@@ -1,8 +1,8 @@
-**Snap**
+# **Snap**
 
-**Live Weblink:**
+## **Live Weblink:**
 
-**Minimum Viable Product**
+## **Minimum Viable Product**
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] Live Chat
@@ -10,11 +10,11 @@
 - [ ] Direct Message
 - [ ] Multi-person Direct Message
 
-**Design Docs**
+## **Design Docs**
 
-**Implementation Timeline**
+## **Implementation Timeline**
 
-Bonus Feature (TBD)
+## **Bonus Feature (TBD)**
 
 - [ ] Geolocation of Chatroom members
 - [ ] Notification
