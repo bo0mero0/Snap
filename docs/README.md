@@ -19,3 +19,5 @@
 - [ ] Geolocation of Chatroom members
 - [ ] Notification
 - [ ] Chat Commands (ex. "/weather")
+- [ ] temporary message with timer
+ 
