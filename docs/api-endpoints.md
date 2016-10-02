@@ -1,14 +1,14 @@
 # **API Endpoints**
-___
+---
 
 ## **HTML API**
-___
+---
 
 ### **Root**
   * GET / - loads React web App
 
 ## **JSON API**
-___
+---
 
 ### **Users**
   * POST /api/users
