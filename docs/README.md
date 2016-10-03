@@ -54,4 +54,3 @@ Snap is a web app that is inspired by Slack that is built using Ruby on Rails an
 - [ ] Notification
 - [ ] Chat Commands (ex. "/weather")
 - [ ] temporary message with timer
--
