@@ -29,6 +29,9 @@
 ### **MessageContainer**
 * Message
 
+
+(might combine the following with channel)
+
 ### **DirectMessageContainer**
 * DirectMessage
 * ChatContainer
