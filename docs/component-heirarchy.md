@@ -48,6 +48,6 @@
 | "/logIn"                              | "AuthFormContainer"       |
 | "/channels/:userid"                   | "ChannelContainer"        |
 | "/channels/:userid/:messageId"        | "ChannelContainer"        |
-| "/channels/:userid/friends"           | "MemberContainer"         |
+| "/channels/:userid/members"           | "MemberContainer"         |
 | "/channels/:ChannelId"                | "ChannelContainer"        |
 | "/directMessage/:id"                  | "DirectMessagesContainer" |
