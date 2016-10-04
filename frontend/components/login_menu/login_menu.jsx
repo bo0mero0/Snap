@@ -19,8 +19,8 @@ class LoginMenu extends React.Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      username: "",
-      password: ""
+      user: {username: "",
+      password: ""}
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -40,7 +40,10 @@ class LoginMenu extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
+    let user = this.state.user;
+    if (this.props.currentUser) {
+      this.props.lo
+    }
   }
 
 
