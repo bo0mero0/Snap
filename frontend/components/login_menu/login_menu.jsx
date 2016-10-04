@@ -34,8 +34,13 @@ class LoginMenu extends React.Component {
 
   update(field) {
     return e => this.setState({
+      [field]: e.currentTarget.value
+    });
+  }
 
-    })
+  handleSubmit(e) {
+    e.preventDefault();
+    
   }
 
 
