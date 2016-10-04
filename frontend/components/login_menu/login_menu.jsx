@@ -18,7 +18,9 @@ class LoginMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      username: "",
+      password: ""
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -28,6 +30,12 @@ class LoginMenu extends React.Component {
     this.setState({
       modalIsOpen: true
     });
+  }
+
+  update(field) {
+    return e => this.setState({
+
+    })
   }
 
 
@@ -45,7 +53,7 @@ class LoginMenu extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           style={customStyles}>
-          <h1>please log in</h1>
+          <h1>Oh Snap! coming soon</h1>
           <button onClick={this.closeModal}>Close</button>
         </Modal>
       </div>
