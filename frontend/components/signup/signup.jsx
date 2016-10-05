@@ -16,7 +16,7 @@ class Signup extends React.Component {
 	}
 
 	redirectIfLoggedIn(){
-		if (this.props.loggedIn) {
+		if (this.props.currentUser) {
 			hashHistory.push("/");
 		}
 	}
@@ -30,16 +30,9 @@ class Signup extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const user = this.state;
-		this.props.processForm({user});
+		this.props.signup({user});
 	}
 
-	navLink() {
-		if (this.props.formType === "login") {
-			return <Link to="/signup">sign up instead</Link>;
-		} else {
-			return <Link to="/login">log in instead</Link>;
-		}
-	}
 
 	renderErrors() {
 		return(
@@ -55,31 +48,29 @@ class Signup extends React.Component {
 
 	render() {
 		return (
-			<div className="login-form-container">
-				<form onSubmit={this.handleSubmit} className="login-form-box">
-					Welcome to BenchBnB!
+			<div className="signup-form-container">
+				<form onSubmit={this.handleSubmit} className="signup-form-box">
 					<br/>
-					Please {this.props.formType} or {this.navLink()}
+					<h2 className="signup-welcome">Welcome back to Snap!</h2>
+          <h3 className="please-signup">Sign up is quick and easy</h3>
 					{ this.renderErrors() }
-					<div className="login-form">
+					<div className="signup-form">
 						<br/>
-						<label> Username:
 							<input type="text"
 								value={this.state.username}
 								onChange={this.update("username")}
-								className="login-input" />
-						</label>
+								className="signup-input"
+                placeholder="username" />
 
 						<br/>
-						<label> Password:
 							<input type="password"
 								value={this.state.password}
 								onChange={this.update("password")}
-								className="login-input" />
-						</label>
+								className="signup-input"
+                placeholder="password"/>
 
 						<br/>
-						<input type="submit" value="Submit" />
+						<input className="signup-submit" type="submit" value="Submit" />
 					</div>
 				</form>
 			</div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import SessionFormContainer from '../session_form/session_form_container';
 
 const customStyles = {
   content : {
@@ -26,6 +25,7 @@ class LoginMenu extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.logoutUser = this.logoutUser.bind(this);
   }
 
   openModal () {
@@ -66,6 +66,11 @@ class LoginMenu extends React.Component {
     );
   }
 
+  logoutUser(e) {
+    e.preventDefault();
+    this.props.logout();
+  }
+
   closeModal () {
     this.setState({
       modalIsOpen: false
@@ -74,40 +79,47 @@ class LoginMenu extends React.Component {
   // { this.renderErrors() }
 
   render () {
-    return (
-      <div>
-        <button onClick={this.openModal} className="modal-button"> Login</button>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          style={customStyles}>
-            <form onSubmit={this.handleSubmit} className="login-form-box">
-    					<h2 className="welcome">Welcome back to Snap!</h2>
-    					<br/>
-    					<h3 className="please-login">Enter your email address and password to log in.</h3>
-    					<div className="login-form">
-    						<br/>
-    							<input type="text"
-    								value={this.state.username}
-    								onChange={this.update("username")}
-    								className="login-input"
-                    placeholder="username" />
+    if (this.props.currentUser) {
+      return (
+        <div>
+          <button onClick={this.logoutUser} className="logout-button"> Logout</button>
+        </div>
+        );
+    } else {
+      return (
+        <div>
+          <button onClick={this.openModal} className="modal-button"> Login</button>
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            style={customStyles}>
+              <form onSubmit={this.handleSubmit} className="login-form-box">
+      					<h2 className="welcome">Welcome back to Snap!</h2>
+      					<br/>
+      					<h3 className="please-login">Enter your username and password to log in.</h3>
+      					<div className="login-form">
+      						<br/>
+      							<input type="text"
+      								value={this.state.username}
+      								onChange={this.update("username")}
+      								className="login-input"
+                      placeholder="username" />
 
-    							<input type="password"
-    								value={this.state.password}
-    								onChange={this.update("password")}
-    								className="login-input"
-                    placeholder="password" />
+      							<input type="password"
+      								value={this.state.password}
+      								onChange={this.update("password")}
+      								className="login-input"
+                      placeholder="password" />
 
-    						<br/>
-    						<input className="login-submit" type="submit" value="Submit" />
-    					</div>
-    				</form>
-        </Modal>
-      </div>
-    );
+      						<br/>
+      						<input className="login-submit" type="submit" value="Submit" />
+      					</div>
+      				</form>
+          </Modal>
+        </div>
+      );
+    }
   }
-
 }
 
 // <button onClick={this.closeModal}>Close</button>

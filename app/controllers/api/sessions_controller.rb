@@ -5,10 +5,8 @@ class Api::SessionsController < ApplicationController
       params[:user][:username],
       params[:user][:password]
     )
-
     if @user
 			login!(@user)
-      debugger
 			render json: {}
 		else
 			render(
