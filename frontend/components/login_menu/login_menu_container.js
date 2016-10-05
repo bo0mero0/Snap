@@ -3,13 +3,14 @@ import LoginMenu from './login_menu';
 import { login, logout, signup } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  errors: state.errors
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: () => dispatch(logout()),
-  signup: () => dispatch(signup()),
-  login: () => dispatch(login()),
+  signup: (user) => dispatch(signup(user)),
+  login: (user) => dispatch(login(user)),
 
 });
 
