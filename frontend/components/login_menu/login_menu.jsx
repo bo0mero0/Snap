@@ -9,7 +9,8 @@ const customStyles = {
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
-    marginRight           : '-50%',
+    border                : '1px solid #e7e7e7',
+    margin                : '0 auto',
     transform             : 'translate(-50%, -50%)'
   }
 };
@@ -81,31 +82,27 @@ class LoginMenu extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}>
             <form onSubmit={this.handleSubmit} className="login-form-box">
-    					Welcome back to Snap!
+    					<h2 className="welcome">Welcome back to Snap!</h2>
     					<br/>
-    					Please log in
+    					<h3 className="please-login">Enter your email address and password to log in.</h3>
     					<div className="login-form">
     						<br/>
-    						<label> Username:
     							<input type="text"
     								value={this.state.username}
     								onChange={this.update("username")}
-    								className="login-input" />
-    						</label>
+    								className="login-input"
+                    placeholder="username" />
 
-    						<br/>
-    						<label> Password:
     							<input type="password"
     								value={this.state.password}
     								onChange={this.update("password")}
-    								className="login-input" />
-    						</label>
+    								className="login-input"
+                    placeholder="password" />
 
     						<br/>
-    						<input type="submit" value="Submit" />
+    						<input className="login-submit" type="submit" value="Submit" />
     					</div>
     				</form>
-          <button onClick={this.closeModal}>Close</button>
         </Modal>
       </div>
     );
@@ -113,5 +110,6 @@ class LoginMenu extends React.Component {
 
 }
 
+// <button onClick={this.closeModal}>Close</button>
 // <SessionFormContainer/>
 export default LoginMenu;
