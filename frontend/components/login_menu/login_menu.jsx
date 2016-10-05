@@ -68,6 +68,9 @@ class LoginMenu extends React.Component {
 
   logoutUser(e) {
     e.preventDefault();
+    this.setState({
+      modalIsOpen: false
+    });
     this.props.logout();
   }
 
@@ -94,7 +97,7 @@ class LoginMenu extends React.Component {
             onRequestClose={this.closeModal}
             style={customStyles}>
               <form onSubmit={this.handleSubmit} className="login-form-box">
-      					<h2 className="welcome">Welcome back to Snap!</h2>
+      					<h2 className="welcome-login" >Welcome back to Snap!</h2>
       					<br/>
       					<h3 className="please-login">Enter your username and password to log in.</h3>
       					<div className="login-form">

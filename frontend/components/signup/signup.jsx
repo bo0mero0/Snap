@@ -47,36 +47,43 @@ class Signup extends React.Component {
 	}
 
 	render() {
-		return (
-			<div className="signup-form-container">
-				<form onSubmit={this.handleSubmit} className="signup-form-box">
-					<br/>
-					<h2 className="signup-welcome">Welcome back to Snap!</h2>
-          <h3 className="please-signup">Sign up is quick and easy</h3>
-					{ this.renderErrors() }
-					<div className="signup-form">
-						<br/>
-							<input type="text"
-								value={this.state.username}
-								onChange={this.update("username")}
-								className="signup-input"
-                placeholder="username" />
+    if (this.props.currentUser) {
+      return (
+        <div className="homepage-logged-in">
+          <h1>Welcome Back {this.props.currentUser.username}</h1>
+        </div>
+      );
+    } else {
+  		return (
+  			<div className="signup-form-container">
+  				<form onSubmit={this.handleSubmit} className="signup-form-box">
+  					<br/>
+  					<h2 className="signup-welcome">Welcome to Snap!</h2>
+            <h3 className="please-signup">Sign up is quick and easy</h3>
+  					{ this.renderErrors() }
+  					<div className="signup-form">
+  						<br/>
+  							<input type="text"
+  								value={this.state.username}
+  								onChange={this.update("username")}
+  								className="signup-input"
+                  placeholder="username" />
 
-						<br/>
-							<input type="password"
-								value={this.state.password}
-								onChange={this.update("password")}
-								className="signup-input"
-                placeholder="password"/>
+  						<br/>
+  							<input type="password"
+  								value={this.state.password}
+  								onChange={this.update("password")}
+  								className="signup-input"
+                  placeholder="password"/>
 
-						<br/>
-						<input className="signup-submit" type="submit" value="Submit" />
-					</div>
-				</form>
-			</div>
-		);
-	}
-
+  						<br/>
+  						<input className="signup-submit" type="submit" value="Submit" />
+  					</div>
+  				</form>
+  			</div>
+  		);
+  	}
+  }
 }
 
 export default Signup;

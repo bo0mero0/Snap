@@ -5,6 +5,15 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    window.snapAssets = {
+      // image_url is a rails helper method that does the fingerprinting
+      // so we need erb tag to use ruby
+      // file name is an argument to the image_url method
+      firstImage: "<%= image_url("Nature-Night-Sky-Stars-Blurred-Light-Show-Mountains-WallpapersByte-com-3840x2400.jpg") %>"
+    }
+  </script>
+
 </head>
 <body>
 

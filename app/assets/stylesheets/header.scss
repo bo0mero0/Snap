@@ -1,5 +1,7 @@
 .header {
   border-bottom: 1px solid #e7e7e7;
+  background: rgba(white, 0.7);
+  padding-top: 5px;
 }
 
 .navbar {
@@ -31,12 +33,21 @@
   display: block;
 }
 
-.login-form-box, .signup-form-box {
+.login-form-box {
   min-width: 385px;
   min-height: 300px;
 }
 
-.login-welcome, .signup-welcome {
+.signup-form-box {
+  border: 1px solid #e7e7e7;
+  width: 580px;
+  height: 300px;
+  margin: 0 auto;
+  background: rgba(white, 0.8);
+  margin-top: 10%;
+}
+
+.welcome-login, .signup-welcome {
   font-size: 36px;
   color: #555459;
   text-align: center;
