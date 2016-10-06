@@ -16,7 +16,7 @@ export const deleteChannel = (channel) => ({
 });
 
 export const receiveChannels = (channels) => ({
-  type: receiveChannels,
+  type: RECEIVE_CHANNELS,
   channels
 });
 
@@ -25,8 +25,9 @@ export const changeChannel = (channel) => ({
   channel
 });
 
-export const receiveChannelErrors = () => ({
-  type: RECEIVE_CHANNEL_ERRORS
+export const receiveChannelErrors = (channelErrors) => ({
+  type: RECEIVE_CHANNEL_ERRORS,
+  channelErrors
 });
 
 export const fetchChannels = () => ({

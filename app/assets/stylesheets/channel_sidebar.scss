@@ -1,0 +1,18 @@
+.channel-sidebar {
+  width: 210px;
+  background: rgba(white, .80);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  padding-left: 15px;
+  padding-top: 13px;
+  display:inline-block;
+  transition: background 1s ease-in-out;
+  -webkit-transition: background .25s ease-in-out;
+}
+
+.channel-sidebar:hover {
+    background: #000;
+    }

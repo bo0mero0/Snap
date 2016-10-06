@@ -23,7 +23,7 @@ export default ({getState, dispatch}) => next => action => {
       deleteChannel(action.channelId, () => next(action), channelErrorCallback);
       break;
     case FETCH_CHANNELS:
-      fetchChannels(successChannelsCallback, errors);
+      fetchChannels(successChannelsCallback, channelErrorCallback);
       return next(action);
     default:
       return next(action);

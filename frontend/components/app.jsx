@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginMenu from './login_menu/login_menu_container'
-import SignupContainer from './signup/signup_container';
 import { Link } from 'react-router';
 
 const App = ({ children }) => (
@@ -11,7 +10,6 @@ const App = ({ children }) => (
         <LoginMenu />
       </ul>
     </header>
-    <SignupContainer/>
     {children}
   </div>
 );

@@ -1,7 +1,6 @@
-json.partial! "api/channels/channel", channel: @channel
 
-@channel.each do |channel|
-json.set! channel.id do
+@channels.each do |each_channel|
+json.set! each_channel.id do
     json.id each_channel.id
     json.title each_channel.title
     json.description each_channel.description

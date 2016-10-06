@@ -25,9 +25,9 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App} >
-          <Route path="signup" component={SignupContainer} onEnter={_redirectIfLoggedIn} />
+          <Route path="signup" component={SignupContainer} />
         </Route>
-        <Route path="/messages" component={chatApp} >
+        <Route path="/messages" component={chatApp} onEnter={_ensureLoggedIn} >
 
         </Route>
       </Router>

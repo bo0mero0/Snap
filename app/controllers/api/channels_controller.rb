@@ -1,7 +1,7 @@
 class Api::ChannelsController < ApplicationController
 
   def index
-    @channel = Channel.all
+    @channels = Channel.all
   end
 
   def show

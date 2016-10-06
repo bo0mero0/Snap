@@ -143,5 +143,4 @@ class LoginMenu extends React.Component {
 }
 
 // <button onClick={this.closeModal}>Close</button>
-// <SessionFormContainer/>
 export default LoginMenu;

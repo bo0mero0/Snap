@@ -11,15 +11,15 @@ class Signup extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	componentDidUpdate() {
-		this.redirectIfLoggedIn();
-	}
-
-	redirectIfLoggedIn(){
-		if (this.props.currentUser) {
-			hashHistory.push("/");
-		}
-	}
+	// componentDidUpdate() {
+	// 	this.redirectIfLoggedIn();
+	// }
+  //
+	// redirectIfLoggedIn(){
+	// 	if (this.props.currentUser) {
+	// 		hashHistory.push("/");
+	// 	}
+	// }
 
 	update(field) {
 		return e => this.setState({
