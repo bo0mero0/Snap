@@ -1,7 +1,8 @@
 # **Snap**
 
 
-## **Live Weblink:**
+## **[Live Weblink](http://ohsnap.herokuapp.com/)**
+
 
 Snap is a web app that is inspired by Slack that is built using Ruby on Rails and React/Redux.
 
