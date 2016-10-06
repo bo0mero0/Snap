@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { Link } from 'react-router';
 
 const customStyles = {
     overlay : {
@@ -100,6 +101,7 @@ class LoginMenu extends React.Component {
       return (
         <div>
           <button onClick={this.logoutUser} className="logout-button"> Logout</button>
+          <li className="chatApp-link"><Link to="/messages" >Chat Room</Link></li>
         </div>
         );
     } else {
