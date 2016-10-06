@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const App = ({ children }) => (
   <div className="app">
     <header className="header group">
-      <h1><Link to="/" >Snap</Link></h1>
+      <h1 className="snap-logo"><Link to="/" >Snap</Link></h1>
       <ul className="navbar">
         <LoginMenu />
       </ul>

@@ -35,15 +35,17 @@ class Signup extends React.Component {
 
 
 	renderErrors() {
-		return(
-			<ul>
-				{this.props.errors.map((error, i) => (
-					<li key={`error-${i}`}>
-						{error}
-					</li>
-				))}
-			</ul>
-		);
+    if (this.props.signupErrors.length) {
+  		return(
+  			<ul className="login-singup-errors">
+  				{this.props.signupErrors.map((error, i) => (
+  					<li key={`error-${i}`}>
+  						{error}
+  					</li>
+  				))}
+  			</ul>
+  		);
+    }
 	}
 
 	render() {
@@ -60,7 +62,7 @@ class Signup extends React.Component {
   					<br/>
   					<h2 className="signup-welcome">Welcome to Snap!</h2>
             <h3 className="please-signup">Sign up is quick and easy</h3>
-  					{ this.renderErrors() }
+            { this.renderErrors() }
   					<div className="signup-form">
   						<br/>
   							<input type="text"

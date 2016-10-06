@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
 const customStyles = {
+    overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.95)'
+  },
+
   content : {
-    top                   : '50%',
+    top                   : '45%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
     border                : '1px solid #e7e7e7',
     margin                : '0 auto',
+    width                 : '40%',
+    height                : '40%',
+    minWidth             : '385px',
+    minHeight            : '300px',
     transform             : 'translate(-50%, -50%)'
   }
 };
@@ -55,15 +68,17 @@ class LoginMenu extends React.Component {
   }
 
   renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    if (this.props.loginErrors.length) {
+      return(
+        <ul className="login-singup-errors">
+          {this.props.loginErrors.map((error, i) => (
+            <li key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
   }
 
   logoutUser(e) {
@@ -79,7 +94,6 @@ class LoginMenu extends React.Component {
       modalIsOpen: false
     });
   }
-  // { this.renderErrors() }
 
   render () {
     if (this.props.currentUser) {
@@ -100,6 +114,7 @@ class LoginMenu extends React.Component {
       					<h2 className="welcome-login" >Welcome back to Snap!</h2>
       					<br/>
       					<h3 className="please-login">Enter your username and password to log in.</h3>
+                { this.renderErrors() }
       					<div className="login-form">
       						<br/>
       							<input type="text"

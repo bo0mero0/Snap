@@ -4,8 +4,8 @@ import { signup } from '../../actions/session_actions';
 
 
 const mapStateToProps = ( state ) => ({
-    currentUser: state.session.currentUser,
-    errors: state.session.errors
+  currentUser: state.session.currentUser,
+  signupErrors: state.session.signupErrors
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
