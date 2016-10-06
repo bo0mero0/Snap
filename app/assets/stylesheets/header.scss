@@ -79,11 +79,16 @@
   width: 60%;
   margin: 0 auto;
   border: 1px solid #c5c5c5;
-  border-radius: 4%;
+  border-radius: 4px;
   font-size: 20px;
   padding: 10px;
   margin-bottom: 5px;
   background: #fff;
+}
+
+.signup-input:focus {
+  border: none;
+  box-shadow: 1px 1px 1px 1px;
 }
 
 
