@@ -1,10 +1,11 @@
-class Api::SessionsController < ApplicationController
+class Api::ChannelsController < ApplicationController
 
   def index
-    @band = Band.all
+    @channel = Channel.all
   end
 
   def show
+    @channel = Channel.first
   end
 
   def create
