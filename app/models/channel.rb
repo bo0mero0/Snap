@@ -10,6 +10,8 @@
 #
 
 class Channel < ActiveRecord::Base
+  has_many :messages
+
   validates :title, :creator_id, presence: true
   validates :title, uniqueness: true, length: {minimum: 6}
 

@@ -18,12 +18,14 @@ class Channel extends React.Component {
   }
 
   channelSelector (e) {
+
     this.setState({
       currentChannel: this.props.channels[e.currentTarget.value]
     });
   }
 
   renderChannels() {
+
     let channelsName = [];
     for (var id in this.props.channels) {
         channelsName.push([this.props.channels[id].title, id]);
@@ -35,7 +37,6 @@ class Channel extends React.Component {
         return (<li className="channel" onClick={this.channelSelector} key={channelName[1]} value={channelName[1]}>{channelName[0]}</li>);
       }
   });
-
     return channelsHtml;
   }
 
