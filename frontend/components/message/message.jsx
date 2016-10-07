@@ -1,16 +1,15 @@
+/* globals Pusher */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
 
 class Message extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({
+    this.state = {
       body: "",
-      author_id: currentUser.id,
-      channel_id: 1
-
-    });
+      author_id: this.props.currentUser.id,
+      channel_id: 1,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.renderMessages = this.renderMessages.bind(this);
@@ -18,12 +17,24 @@ class Message extends React.Component {
 
   componentDidMount() {
     this.props.fetchMessages();
+    this.pusher = new Pusher('c0b1744978ade9f1c5a4', {
+      encrypted: true
+    });
+    var channel = this.pusher.subscribe('chat' + this.state.channel_id.toString());
+    channel.bind('message_created', data => {
+      this.props.fetchMessages();
+    });
+  }
+
+  componentWillUnmount() {
+    this.pusher.unsubcribe('chat' + this.state.channel_id.toString());
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const message = this.state;
     this.props.createMessage({message});
+    this.setState({ body: "" });
   }
 
   handleChange(e) {
@@ -38,26 +49,24 @@ class Message extends React.Component {
         messagesbody.push([this.props.messages[id].body, id]);
     }
     let messagesHtml = messagesbody.map( messagebody => {
-      return (<li classbody="message" key={messagebody[1]} value={messagebody[1]}>{messagebody[0]}</li>);
+      return (<li className="message" key={messagebody[1]} value={messagebody[1]}>{messagebody[0]}</li>);
     });
     return messagesHtml;
   }
 
   render() {
-
     return (
-      <div>
-        <ul>
+      <div className="message-container">
+        <ul className="messages">
           {this.renderMessages()}
         </ul>
-
         <form onSubmit={this.handleSubmit}>
-        <textarea onChange={this.handleChange}
-                  placeholder="enter message"
-                  rows="10"
-                  cols="50">
-
-        </textarea>
+        <input type="text"
+              className="message-input"
+              onChange={this.handleChange}
+              placeholder="enter message"
+              value={this.state.body}>
+        </input>
         <input type="submit" value="submit"/>
         </form>
       </div>

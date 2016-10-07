@@ -6,9 +6,6 @@ import MessageContainer from './message/message_container';
 const chatApp = ({ children }) => (
   <div className="chatApp">
     <ChannelContainer/>
-    <header >
-      <h1 className="construction"><Link to="/" >Oh Snap coming soon...</Link></h1>
-    </header>
     <MessageContainer/>
     {children}
   </div>

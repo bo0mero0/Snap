@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Message from './message';
-import { fetchMessages, createMessage } from '../../actions/message_actions';
+import { fetchMessages, createMessage} from '../../actions/message_actions';
 
 const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,

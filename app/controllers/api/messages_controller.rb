@@ -4,10 +4,20 @@ class Api::MessagesController < ApplicationController
     @messages = Message.all
   end
 
+  def show
+    @message = Message.find_by_id(params[:id])
+  end
+
   def create
+    # + params[:message][:channel_id].to_s
     @message = Message.new(message_params)
     if @message.save
-      render json: {}
+  
+      Pusher.trigger('chat1' , 'message_created', {
+        message: 'hello world'
+      })
+
+      render :show
     else
       render json: @message.errors.full_messages, status: 422
     end

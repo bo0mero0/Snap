@@ -1,5 +1,6 @@
 import {
   receiveMessages,
+  receiveMessage,
   receiveMessageErrors,
   CREATE_MESSAGE,
   DELETE_MESSAGE,
@@ -14,6 +15,7 @@ import {
 
 export default ({getState, dispatch}) => next => action => {
   const successMessageCallback = messages => dispatch(receiveMessages(messages));
+  const successReceiveMessageCallback = message => dispatch(receiveMessage(message));
   const messageErrorCallback = xhr => {
     const errors = xhr.responseJSON;
     dispatch(receiveMessageErrors(errors));
@@ -21,7 +23,7 @@ export default ({getState, dispatch}) => next => action => {
 
   switch (action.type) {
     case CREATE_MESSAGE:
-      createMessage(action.message, successMessageCallback, messageErrorCallback);
+      createMessage(action.message, successReceiveMessageCallback, messageErrorCallback);
       return next(action);
     case DELETE_MESSAGE:
       deleteMessage(action.messageId, () => next(action), messageErrorCallback);

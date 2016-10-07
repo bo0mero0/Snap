@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bcrypt'
+gem 'pusher'
 
 
 group :development, :test do
