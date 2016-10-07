@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 
 import {
   RECEIVE_MESSAGES,
-  DELETE_MESSAGES,
+  DELETE_MESSAGE,
   RECEIVE_MESSAGE_ERRORS
 } from '../actions/message_actions';
 
@@ -14,7 +14,7 @@ const _defaultState = Object.freeze({
 const MessageReducer = (state = _defaultState, action) => {
   switch (action.type) {
     case RECEIVE_MESSAGES:
-      return merge({}, action.messages);
+      return merge({}, {messages: action.messages});
     case DELETE_MESSAGE:
       let newMessages = {};
       newMessage = state.messages;

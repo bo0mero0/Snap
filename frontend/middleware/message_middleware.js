@@ -29,7 +29,7 @@ export default ({getState, dispatch}) => next => action => {
     case FETCH_MESSAGES:
       fetchMessages(successMessageCallback, messageErrorCallback);
       return next(action);
-    default
+    default:
       return next(action);
   }
 }

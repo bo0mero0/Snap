@@ -2,7 +2,7 @@ export const fetchMessages = (success, error) => {
   $.ajax({
     method: 'GET',
     url: '/api/messages',
-    sucess,
+    success,
     error
   });
 };
