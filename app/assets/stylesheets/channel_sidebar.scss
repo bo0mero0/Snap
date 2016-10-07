@@ -1,16 +1,53 @@
 .channel-sidebar {
   width: 210px;
-  background: rgba(white, .80);
+  background: rgba(white, .40);
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   font-size: 30px;
-  padding-left: 15px;
   padding-top: 13px;
   display:inline-block;
   // transition: background 1s ease-in-out;
   // -webkit-transition: background .25s ease-in-out;
+}
+
+.channel-header {
+  padding-left: 16px;
+  padding-bottom: 10px;
+}
+.channels {
+  line-height: 1.6rem;
+}
+
+.channel {
+  font-family: "Slack-Lato", "appleLogo" ,sans-serif;
+  font-size: 1rem;
+  padding-left: 16px;
+  padding-right: 4px;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-right: 1rem;
+}
+
+.channel:hover {
+  background: rgba(#555459, .20);
+
+}
+
+.current-channel {
+  font-family: "Slack-Lato", "appleLogo" ,sans-serif;
+  font-size: 1rem;
+  padding-left: 16px;
+  padding-right: 4px;
+  background: rgba(#555459, .50);
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-right: 1rem;
 }
 
 // .channel-sidebar:hover {

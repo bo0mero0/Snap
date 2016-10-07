@@ -17,7 +17,7 @@ const Root = ({ store }) => {
   const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
-      replace('/signup');
+      replace('/');
     }
   };
 
@@ -25,7 +25,7 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App} >
-          <Route path="signup" component={SignupContainer} />
+          <IndexRoute component={SignupContainer}/>
         </Route>
         <Route path="/messages" component={chatApp} onEnter={_ensureLoggedIn} >
 
@@ -35,4 +35,5 @@ const Root = ({ store }) => {
  );
 };
 
+// <Route path="signup" component={SignupContainer} />
 export default Root;
