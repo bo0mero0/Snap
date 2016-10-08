@@ -26,6 +26,13 @@ class Message extends React.Component {
     });
   }
 
+  componentDidUpdate(){
+    const end = document.getElementById('messages-scroll-location');
+    if (end) {
+      end.scrollIntoView();
+    }
+  }
+
   componentWillUnmount() {
     this.pusher.unsubcribe('chat' + this.state.channel_id.toString());
   }
@@ -35,6 +42,7 @@ class Message extends React.Component {
     const message = this.state;
     this.props.createMessage({message});
     this.setState({ body: "" });
+
   }
 
   handleChange(e) {
@@ -59,6 +67,7 @@ class Message extends React.Component {
       <div className="message-container">
         <ul className="messages">
           {this.renderMessages()}
+          <div id="messages-scroll-location"></div>
         </ul>
         <form onSubmit={this.handleSubmit}>
         <input type="text"
@@ -67,7 +76,7 @@ class Message extends React.Component {
               placeholder="enter message"
               value={this.state.body}>
         </input>
-        <input type="submit" value="submit"/>
+        <input type="submit" className="chat-submit" value="submit"/>
         </form>
       </div>
     );

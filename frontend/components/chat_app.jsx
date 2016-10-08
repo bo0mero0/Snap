@@ -4,7 +4,7 @@ import ChannelContainer from './channel/channel_container';
 import MessageContainer from './message/message_container';
 
 const chatApp = ({ children }) => (
-  <div className="chatApp">
+  <div className="chat-app">
     <ChannelContainer/>
     <MessageContainer/>
     {children}

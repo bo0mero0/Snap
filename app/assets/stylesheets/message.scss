@@ -1,10 +1,25 @@
 .message-container {
+  display: block;
   border: 1px solid green;
   float: left;
-  margin-left: 210px;
+  padding-left: 210px;
   color: #fff;
   width: 100%;
   height: 100vh;
+  // background: #fff;
+}
+
+.messages {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.message {
+}
+
+.chat-submit {
+  display: none;
 }
 
 .message-input {
@@ -13,5 +28,5 @@
   border: 1px solid green;
   position: absolute;
   bottom: 0px;
-  width: 100%;
+  width: 81%;
 }
