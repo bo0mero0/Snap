@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { hashHistory } from 'react-router';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -14,18 +15,19 @@ class Channel extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchChannels();
+    if (!this.props.currentChannel) {
+      hashHistory.push(`/messages/Awesome`);
+    }
   }
 
   channelSelector (e) {
-
     this.setState({
       currentChannel: this.props.channels[e.currentTarget.value]
     });
+    this.props.changeChannel(this.props.channels[e.currentTarget.value].title);
   }
 
   renderChannels() {
-
     let channelsName = [];
     for (var id in this.props.channels) {
         channelsName.push([this.props.channels[id].title, id]);
@@ -41,6 +43,7 @@ class Channel extends React.Component {
   }
 
 
+
   render () {
     return (
       <div className="channel-sidebar group">
@@ -48,6 +51,7 @@ class Channel extends React.Component {
         <ul className="channels">
           { this.renderChannels() }
         </ul>
+        {this.props.children}
       </div>
     );
   }

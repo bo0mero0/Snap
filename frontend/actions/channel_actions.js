@@ -4,6 +4,7 @@ export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 export const FETCH_CHANNELS = "FETCH_CHANNELS";
 export const CHANGE_CHANNEL = "CHANGE_CHANNEL";
+export const UPDATE_CURRENT_CHANNEL = "UPDATE_CURRENT_CHANNEL";
 
 export const createChannel = (channel) => ({
   type: CREATE_CHANNEL,
@@ -21,7 +22,7 @@ export const receiveChannels = (channels) => ({
 });
 
 export const changeChannel = (channel) => ({
-  type: CREATE_CHANNEL,
+  type: CHANGE_CHANNEL,
   channel
 });
 
@@ -32,4 +33,9 @@ export const receiveChannelErrors = (channelErrors) => ({
 
 export const fetchChannels = () => ({
   type: FETCH_CHANNELS,
+});
+
+export const updateCurrentChannel = (channel) => ({
+  type: UPDATE_CURRENT_CHANNEL,
+  channel
 });

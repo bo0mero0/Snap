@@ -1,7 +1,8 @@
-export const fetchMessages = (success, error) => {
+export const fetchMessages = (channelName, success, error) => {
   $.ajax({
     method: 'GET',
     url: '/api/messages',
+    data: {channelName: channelName},
     success,
     error
   });

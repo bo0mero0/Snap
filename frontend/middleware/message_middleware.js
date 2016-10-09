@@ -29,7 +29,7 @@ export default ({getState, dispatch}) => next => action => {
       deleteMessage(action.messageId, () => next(action), messageErrorCallback);
       break;
     case FETCH_MESSAGES:
-      fetchMessages(successMessageCallback, messageErrorCallback);
+      fetchMessages(action.channelName, successMessageCallback, messageErrorCallback);
       return next(action);
     default:
       return next(action);

@@ -16,8 +16,9 @@ export const deleteMessage = (messageId) => ({
   messageId
 });
 
-export const fetchMessages = () => ({
-  type: FETCH_MESSAGES
+export const fetchMessages = (channelName) => ({
+  type: FETCH_MESSAGES,
+  channelName
 });
 
 export const receiveMessages = (messages) => ({

@@ -1,7 +1,7 @@
 class Api::MessagesController < ApplicationController
 
   def index
-    @messages = Message.all
+    @messages = Message.where(channel_id: Channel.find_by(title: params[:channelName]).id)
   end
 
   def show
@@ -9,12 +9,12 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
+    channel_id = Channel.find_by(title: message_params[:channelName]).id
     # + params[:message][:channel_id].to_s
-    @message = Message.new(message_params)
+    @message = Message.new(body: message_params[:body], author_id: message_params[:author_id], channel_id: channel_id)
     if @message.save
-  
       Pusher.trigger('chat1' , 'message_created', {
-        message: 'hello world'
+
       })
 
       render :show
@@ -40,7 +40,7 @@ class Api::MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:author_id, :channel_id, :body)
+    params.require(:message).permit(:author_id, :channelName, :body)
   end
 
 end

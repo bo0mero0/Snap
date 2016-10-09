@@ -4,11 +4,12 @@ import {
   RECEIVE_CHANNELS,
   DELETE_CHANNEL,
   CHANGE_CHANNEL,
-  RECEIVE_CHANNEL_ERRORS
+  RECEIVE_CHANNEL_ERRORS,
+  UPDATE_CURRENT_CHANNEL
 } from '../actions/channel_actions';
 
 const _defaultState = Object.freeze({
-  currentChannel: {},
+  currentChannel: null,
   channels: {},
   channelErrors: []
 });
@@ -17,7 +18,7 @@ const ChannelReducer = (state = _defaultState, action) => {
   switch (action.type) {
     case RECEIVE_CHANNELS:
       const channels = action.channels;
-      return merge({}, _defaultState, {channels: channels});
+      return merge({}, state, {channels: channels});
     case DELETE_CHANNEL:
       let newChannels = {};
       newChannels = state.channels;

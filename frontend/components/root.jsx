@@ -4,6 +4,10 @@ import App from './app';
 import chatApp from './chat_app';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import SignupContainer from './signup/signup_container';
+import MessageContainer from './message/message_container';
+import ChannelContainer from './channel/channel_container';
+import { changeChannel, fetchChannels } from '../actions/channel_actions';
+import { fetchMessages } from '../actions/message_actions';
 
 const Root = ({ store }) => {
 
@@ -17,9 +21,20 @@ const Root = ({ store }) => {
   const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
-      replace('/');
+      hashHistory.push('/');
     }
   };
+
+  const _changeCurrentChannel = (state) => {
+    store.dispatch(changeChannel(state.params.channelName));
+    store.dispatch(fetchMessages(state.params.channelName));
+
+  }
+
+  const _fetchChannels = () => {
+    _ensureLoggedIn();
+    store.dispatch(fetchChannels());
+  }
 
   return (
     <Provider store={store}>
@@ -27,13 +42,14 @@ const Root = ({ store }) => {
         <Route path="/" component={App} >
           <IndexRoute component={SignupContainer}/>
         </Route>
-        <Route path="/messages" component={chatApp} onEnter={_ensureLoggedIn} >
-
+        <Route path="/messages" component={ChannelContainer} onEnter={_fetchChannels} >
+          <Route path=":channelName" component={MessageContainer} onEnter={_changeCurrentChannel} />
         </Route>
       </Router>
     </Provider>
  );
 };
 
+// <Route path=":channelName" component={ChannelContainer} onEnter={_changeCurrentChannel} />
 // <Route path="signup" component={SignupContainer} />
 export default Root;
