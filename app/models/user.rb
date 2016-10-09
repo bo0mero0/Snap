@@ -9,8 +9,9 @@
 #
 
 class User < ActiveRecord::Base
-  
+
   has_many :messages
+  has_many :channel_subscriptions
 
 	attr_reader :password
 

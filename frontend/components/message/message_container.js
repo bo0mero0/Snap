@@ -9,7 +9,7 @@ const mapStateToProps = ( state ) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchMessages: () => dispatch(fetchMessages()),
+  fetchMessages: (channelName) => dispatch(fetchMessages(channelName)),
   createMessage: (message) => dispatch(createMessage(message)),
 });
 

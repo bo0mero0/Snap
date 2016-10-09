@@ -23,9 +23,11 @@ class Message extends React.Component {
       encrypted: true
     });
     // this.state.channel_id.toString()
+    // let currentChannel = this.props.currentChannel;
+    // let fetchMessages = this.props.fetchMessages;
     var channel = this.pusher.subscribe('chat1');
     channel.bind('message_created', data => {
-      this.props.fetchMessages(this.props.currentChannel.id);
+      this.props.fetchMessages(this.props.currentChannel);
     });
   }
 
@@ -53,7 +55,7 @@ class Message extends React.Component {
 
   render() {
     return (
-      <div className="message-container">
+      <div className="message-container group">
         <ul className="messages">
           {this.renderMessages()}
           <div id="messages-scroll-location"></div>

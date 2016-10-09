@@ -11,6 +11,7 @@
 
 class Channel < ActiveRecord::Base
   has_many :messages
+  has_many :channel_subscriptions
 
   validates :title, :creator_id, presence: true
   validates :title, uniqueness: true, length: {minimum: 6}

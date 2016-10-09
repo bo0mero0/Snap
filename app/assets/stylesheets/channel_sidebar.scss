@@ -1,5 +1,12 @@
 .channel-sidebar {
-  width: 210px;
+  // transition: background 1s ease-in-out;
+  // -webkit-transition: background .25s ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+}
+
+.channels-container {
+  width: 220px;
   background: rgba(white, .40);
   height: 100%;
   position: absolute;
@@ -8,11 +15,10 @@
   font-size: 30px;
   padding-top: 13px;
   display:inline-block;
-  // transition: background 1s ease-in-out;
-  // -webkit-transition: background .25s ease-in-out;
 }
 
 .channel-header {
+  text-transform: capitalize;
   padding-left: 16px;
   padding-bottom: 10px;
 }
