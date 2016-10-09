@@ -8,7 +8,7 @@
 .channels-container {
   width: 220px;
   background: rgba(white, .40);
-  height: 100%;
+  height: calc(100vh - 28px);
   position: absolute;
   top: 0;
   left: 0;

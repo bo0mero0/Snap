@@ -14,7 +14,7 @@
 .messages {
   position: absolute;
   display: block;
-  width: calc(100% - 225px);
+  width: calc(100% - 297px);
   overflow-y: auto;
   max-height: calc(100% - 65px);
   margin-bottom: 65px;
@@ -23,7 +23,6 @@
 
 .message {
   display: block;
-  width: 100%;
 }
 
 .chat-submit {
