@@ -43,19 +43,30 @@ class Message extends React.Component {
   }
 
   renderMessages() {
-    let messagesbody = [];
+    let messages = [];
     for (var id in this.props.messages) {
-        messagesbody.push([this.props.messages[id].body, id]);
+        messages.push(this.props.messages[id]);
     }
-    let messagesHtml = messagesbody.map( messagebody => {
-      return (<li className="message" key={messagebody[1]} value={messagebody[1]}>{messagebody[0]}</li>);
+    let messagesHtml = messages.map( message => {
+      return (
+        <li className="message-container" key={message.id}>
+          <div className="message-icon">{message.icon_url}</div>
+          <div className="author-time-message-container">
+            <div className="author-time-container">
+              <div className="message-author">{message.author_name}</div>
+              <div className="message-time">{message.created_at}</div>
+            </div>
+            <div className="message" key={message.id} value={message.id}>{message.body}</div>
+          </div>
+        </li>
+      );
     });
     return messagesHtml;
   }
 
   render() {
     return (
-      <div className="message-container group">
+      <div className="messages-container group">
         <ul className="messages">
           {this.renderMessages()}
           <div id="messages-scroll-location"></div>

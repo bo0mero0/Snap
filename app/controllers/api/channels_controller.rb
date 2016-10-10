@@ -34,9 +34,8 @@ class Api::ChannelsController < ApplicationController
   def subscribe
     @channel = Channel.find(params[:id])
     @channel.users.push(current_user)
-    debugger
     @subscribed_channels = current_user.channels
-    render json: {}
+    render :subscribe
   end
 
   def unsubscribe
@@ -44,12 +43,20 @@ class Api::ChannelsController < ApplicationController
     @channel.users.delete(current_user)
 
     @subscribed_channels = current_user.channels
-    render json: {}
+    render :subscribe
+  end
+
+  def create_dm
+    
   end
 
   private
 
   def channel_params
     params.require(:channel).permit(:title, :description, :creator_id, :icon_url)
+  end
+
+  def dm_params
+    params.permit(:users)
   end
 end

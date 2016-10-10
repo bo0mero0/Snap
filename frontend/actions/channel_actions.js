@@ -8,6 +8,7 @@ export const FETCH_SUBSCRIBE_CHANNELS = "FETCH_SUBSCRIBE_CHANNELS";
 export const RECEIVE_SUBSCRIBE_CHANNELS = "RECEIVE_SUBSCRIBE_CHANNELS";
 export const SUBCRIBE_TO_CHANNEL = "SUBCRIBE_TO_CHANNEL";
 export const UNSUBCRIBE_TO_CHANNEL = "UNSUBCRIBE_TO_CHANNEL";
+export const CREATE_DM_CHANNEL = "CREATE_DM_CHANNEL";
 
 export const createChannel = (channel) => ({
   type: CREATE_CHANNEL,
@@ -57,4 +58,9 @@ export const unsubscribeToChannel = (channelId, userId) => ({
   type: UNSUBCRIBE_TO_CHANNEL,
   channelId,
   userId
+});
+
+export const createDmChannel = (users) => ({
+  type: CREATE_DM_CHANNEL,
+  users
 });

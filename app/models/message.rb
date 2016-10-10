@@ -6,8 +6,8 @@
 #  body       :string           not null
 #  author_id  :integer          not null
 #  channel_id :integer          not null
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Message < ActiveRecord::Base
@@ -18,10 +18,5 @@ class Message < ActiveRecord::Base
 
   validates :body, :author_id, :channel_id, presence: true
 
-  def find_by_id(message_id)
-    message = Message.find_by(id: message_id)
-    return nil unless message
-    message
-  end
 
 end

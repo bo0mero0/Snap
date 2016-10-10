@@ -38,6 +38,10 @@
   margin-right: 1rem;
 }
 
+.channel button {
+  float:right;
+}
+
 .channel:hover {
   background: rgba(#555459, .20);
 
@@ -54,6 +58,10 @@
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   margin-right: 1rem;
+}
+
+.current-channel button {
+  float:right;
 }
 
 // .channel-sidebar:hover {

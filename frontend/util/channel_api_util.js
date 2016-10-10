@@ -53,3 +53,13 @@ export const unsubscribeToChannel = (channelId, success, error) => {
     error
   });
 };
+
+export const createDmChannel = (users, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: `api/channels/subscribe`,
+    data: {users: users},
+    success,
+    error
+  });
+};

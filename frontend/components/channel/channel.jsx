@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { hashHistory, Link } from 'react-router';
 import SubscribeModal from './subscribe_modal_container';
+import DmModal from './dm_modal_container';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -30,8 +31,8 @@ class Channel extends React.Component {
   // }
 
   handleUnsubscribe(e) {
-    debugger
     this.props.unsubscribeToChannel(e.currentTarget.value);
+    hashHistory.push(`/messages/Awesome`);
   }
 
   renderChannels() {
@@ -43,13 +44,12 @@ class Channel extends React.Component {
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
                   <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
-                  <div onClick={this.handleUnsubscribe} value={parseInt(channelName[1])}>ⓧ</div>
+                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
-        debugger
         return (<li className="channel"  key={channelName[1]}>
                   <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
-                  <div onClick={this.handleUnsubscribe} value={parseInt(channelName[1])}>ⓧ</div>
+                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       }
   });
@@ -67,6 +67,7 @@ class Channel extends React.Component {
           <ul className="channels">
             { this.renderChannels() }
           </ul>
+          <DmModal/>
         </div>
         {this.props.children}
       </div>

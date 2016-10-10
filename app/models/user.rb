@@ -6,6 +6,7 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
+#  icon_url        :string
 #
 
 class User < ActiveRecord::Base
@@ -25,6 +26,12 @@ class User < ActiveRecord::Base
 
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
+
+  before_save :default_values
+
+  def default_values
+    self.icon_url ||= '✒'
+  end
 
 	def password= password
 		self.password_digest = BCrypt::Password.create(password)

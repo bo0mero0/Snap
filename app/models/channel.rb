@@ -2,11 +2,12 @@
 #
 # Table name: channels
 #
-#  id          :integer          not null, primary key
-#  title       :string           not null
-#  description :string
-#  icon_url    :string
-#  creator_id  :integer
+#  id           :integer          not null, primary key
+#  title        :string           not null
+#  description  :string
+#  icon_url     :string
+#  creator_id   :integer
+#  channel_type :string           default("channel")
 #
 
 class Channel < ActiveRecord::Base

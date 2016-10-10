@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import { Link } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 const customStyles = {
     overlay : {

@@ -41,6 +41,7 @@ class SubscribeModal extends React.Component {
 
   handleSubscribe(e) {
     this.props.subscribeToChannel(e.currentTarget.value);
+    this.closeModal();
   }
 
   openModal () {
@@ -72,21 +73,6 @@ class SubscribeModal extends React.Component {
         </li>
         );
       });
-
-  //   for (var id in this.props.subscribeChannels) {
-  //       channelsName.push([this.props.subscribeChannels[id].title, id]);
-  //   }
-  //   let channelsHtml = channelsName.map( channelName => {
-  //     if ( channelName[0] === this.props.currentChannel) {
-  //       return (<li className="current-channel"  key={channelName[1]} >
-  //                 <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
-  //               </li>);
-  //     } else {
-  //       return (<li className="channel"  key={channelName[1]}>
-  //                 <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
-  //               </li>);
-  //     }
-  // });
     }
     return channelsName;
   }
