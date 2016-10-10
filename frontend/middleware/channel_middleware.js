@@ -5,10 +5,17 @@ import {
   CREATE_CHANNEL,
   DELETE_CHANNEL,
   FETCH_CHANNELS,
-  FETCH_SUBSCRIBE_CHANNELS
+  FETCH_SUBSCRIBE_CHANNELS,
+  SUBCRIBE_TO_CHANNEL,
+  UNSUBCRIBE_TO_CHANNEL
 } from '../actions/channel_actions';
 
-import { fetchChannels, deleteChannel, createChannel, fetchSubscribeChannels } from '../util/channel_api_util';
+import { fetchChannels,
+          deleteChannel,
+          createChannel,
+          fetchSubscribeChannels,
+          subscribeToChannel,
+          unsubscribeToChannel} from '../util/channel_api_util';
 
 export default ({getState, dispatch}) => next => action => {
   const successChannelsCallback = channels => dispatch(receiveChannels(channels));
@@ -30,6 +37,12 @@ export default ({getState, dispatch}) => next => action => {
       return next(action);
     case FETCH_SUBSCRIBE_CHANNELS:
       fetchSubscribeChannels(action.currentUserId, successSubscribeChannelsCallback, channelErrorCallback );
+      return next(action);
+    case SUBCRIBE_TO_CHANNEL:
+      subscribeToChannel(action.channelId, successSubscribeChannelsCallback, channelErrorCallback);
+      return next(action);
+    case UNSUBCRIBE_TO_CHANNEL:
+      unsubscribeToChannel(action.channelId, successSubscribeChannelsCallback, channelErrorCallback);
       return next(action);
     default:
       return next(action);

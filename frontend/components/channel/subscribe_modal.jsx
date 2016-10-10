@@ -36,12 +36,11 @@ class SubscribeModal extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderAllChannels = this.renderAllChannels.bind(this);
+    this.handleSubscribe = this.handleSubscribe.bind(this);
   }
 
-
-
   handleSubscribe(e) {
-    console.log("hello");
+    this.props.subscribeToChannel(e.currentTarget.value);
   }
 
   openModal () {
@@ -65,9 +64,11 @@ class SubscribeModal extends React.Component {
       });
 
       channelsName = filteredChannelsId.map( id => {
-        return (<li className="channel"  key={id} onClick={this.handleSubscribe}>
-          <Link to={"messages/" + this.props.allChannels[id].title}
-            >{this.props.allChannels[id].title}</Link>
+        return (<li className="channel"  key={id} value={id}
+          onClick={this.handleSubscribe}>
+          <Link to={"messages/" + this.props.allChannels[id].title}>
+             {this.props.allChannels[id].title}
+           </Link>
         </li>
         );
       });

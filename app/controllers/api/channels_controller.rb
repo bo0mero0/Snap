@@ -31,6 +31,22 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def subscribe
+    @channel = Channel.find(params[:id])
+    @channel.users.push(current_user)
+    debugger
+    @subscribed_channels = current_user.channels
+    render json: {}
+  end
+
+  def unsubscribe
+    @channel = Channel.find(params[:id])
+    @channel.users.delete(current_user)
+
+    @subscribed_channels = current_user.channels
+    render json: {}
+  end
+
   private
 
   def channel_params

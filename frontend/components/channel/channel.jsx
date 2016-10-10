@@ -12,6 +12,7 @@ class Channel extends React.Component {
       channels: {}
     };
     this.renderChannels = this.renderChannels.bind(this);
+    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
     // this.channelSelector = this.channelSelector.bind(this);
   }
 
@@ -28,6 +29,11 @@ class Channel extends React.Component {
   //   this.props.changeChannel(this.props.channels[e.currentTarget.value].title);
   // }
 
+  handleUnsubscribe(e) {
+    debugger
+    this.props.unsubscribeToChannel(e.currentTarget.value);
+  }
+
   renderChannels() {
     let channelsName = [];
     for (var id in this.props.subscribeChannels) {
@@ -37,10 +43,13 @@ class Channel extends React.Component {
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
                   <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <div onClick={this.handleUnsubscribe} value={parseInt(channelName[1])}>ⓧ</div>
                 </li>);
       } else {
+        debugger
         return (<li className="channel"  key={channelName[1]}>
                   <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                  <div onClick={this.handleUnsubscribe} value={parseInt(channelName[1])}>ⓧ</div>
                 </li>);
       }
   });
