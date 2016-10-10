@@ -5,11 +5,10 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.first
+    @channels = User.find_by(id: params[:id]).channels
   end
 
   def create
-    debugger
     @channel = Channel.new(channel_params)
     if @channel.save
       render json: {}

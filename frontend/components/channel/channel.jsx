@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { hashHistory, Link } from 'react-router';
+import SubscribeModal from './subscribe_modal_container';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -29,8 +30,8 @@ class Channel extends React.Component {
 
   renderChannels() {
     let channelsName = [];
-    for (var id in this.props.channels) {
-        channelsName.push([this.props.channels[id].title, id]);
+    for (var id in this.props.subscribeChannels) {
+        channelsName.push([this.props.subscribeChannels[id].title, id]);
     }
     let channelsHtml = channelsName.map( channelName => {
       if ( channelName[0] === this.props.currentChannel) {
@@ -53,6 +54,7 @@ class Channel extends React.Component {
       <div className="channel-sidebar group">
         <div className="channels-container">
           <h3 className="channel-header">✑ {this.props.currentUser.username}</h3>
+          <SubscribeModal/>
           <ul className="channels">
             { this.renderChannels() }
           </ul>

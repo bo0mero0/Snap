@@ -4,7 +4,9 @@ export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 export const FETCH_CHANNELS = "FETCH_CHANNELS";
 export const CHANGE_CHANNEL = "CHANGE_CHANNEL";
-export const UPDATE_CURRENT_CHANNEL = "UPDATE_CURRENT_CHANNEL";
+export const FETCH_SUBSCRIBE_CHANNELS = "FETCH_SUBSCRIBE_CHANNELS";
+export const RECEIVE_SUBSCRIBE_CHANNELS = "RECEIVE_SUBSCRIBE_CHANNELS";
+export const SUBCRIBE_TO_CHANNEL = "SUBCRIBE_TO_CHANNEL";
 
 export const createChannel = (channel) => ({
   type: CREATE_CHANNEL,
@@ -18,6 +20,11 @@ export const deleteChannel = (channel) => ({
 
 export const receiveChannels = (channels) => ({
   type: RECEIVE_CHANNELS,
+  channels
+});
+
+export const receiveSubscribeChannels = (channels) => ({
+  type: RECEIVE_SUBSCRIBE_CHANNELS,
   channels
 });
 
@@ -35,7 +42,12 @@ export const fetchChannels = () => ({
   type: FETCH_CHANNELS,
 });
 
-export const updateCurrentChannel = (channel) => ({
-  type: UPDATE_CURRENT_CHANNEL,
-  channel
+export const fetchSubscribeChannels = (currentUserId) => ({
+  type: FETCH_SUBSCRIBE_CHANNELS,
+  currentUserId
+});
+
+export const subscribeToChannel = (channelId) => ({
+  type: SUBCRIBE_TO_CHANNEL,
+  channelId
 });

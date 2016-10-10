@@ -7,6 +7,15 @@ export const fetchChannels = (success, error) => {
   });
 };
 
+export const fetchSubscribeChannels = (currentUserId, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/channels/${currentUserId}`,
+    success,
+    error
+  });
+};
+
 export const deleteChannel = (channelId, success, error) => {
   $.ajax({
     method: 'DELETE',

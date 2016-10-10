@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import SignupContainer from './signup/signup_container';
 import MessageContainer from './message/message_container';
 import ChannelContainer from './channel/channel_container';
-import { changeChannel, fetchChannels } from '../actions/channel_actions';
+import { changeChannel, fetchChannels, fetchSubscribeChannels } from '../actions/channel_actions';
 import { fetchMessages } from '../actions/message_actions';
 
 const Root = ({ store }) => {
@@ -33,7 +33,8 @@ const Root = ({ store }) => {
 
   const _fetchChannels = () => {
     _ensureLoggedIn();
-    store.dispatch(fetchChannels());
+    store.dispatch(fetchSubscribeChannels(currentUser.id));
+    store.dispatch(fetchChannels())
   }
 
   return (

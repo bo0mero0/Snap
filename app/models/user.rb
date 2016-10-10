@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :channel_subscriptions
 
+  has_many :channels,
+    through: :channel_subscriptions,
+    source: :channel
+
 	attr_reader :password
 
 	validates :username, :password_digest, :session_token, presence: true

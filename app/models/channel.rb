@@ -12,7 +12,11 @@
 class Channel < ActiveRecord::Base
   has_many :messages
   has_many :channel_subscriptions
- 
+
+  has_many :users,
+    through: :channel_subscriptions,
+    source: :user
+
   validates :title, :creator_id, presence: true
   validates :title, uniqueness: true, length: {minimum: 6}
 
