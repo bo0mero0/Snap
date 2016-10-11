@@ -4,7 +4,8 @@ import { changeChannel, createDmChannel } from '../../actions/channel_actions';
 
 const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,
-  currentChannel: state.channel.currentChannel
+  currentChannel: state.channel.currentChannel,
+  allUsers: state.session.allUsers
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

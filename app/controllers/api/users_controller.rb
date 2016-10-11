@@ -1,5 +1,13 @@
 class Api::UsersController < ApplicationController
+
+
+  def alluser
+    @users = User.all
+    render "api/users/alluser.json.jbuilder"
+  end
+
   def show
+
   end
 
   def create

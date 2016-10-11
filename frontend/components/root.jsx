@@ -8,6 +8,7 @@ import MessageContainer from './message/message_container';
 import ChannelContainer from './channel/channel_container';
 import { changeChannel, fetchChannels, fetchSubscribeChannels } from '../actions/channel_actions';
 import { fetchMessages } from '../actions/message_actions';
+import { fetchAllUsers } from '../actions/session_actions';
 
 const Root = ({ store }) => {
 
@@ -26,6 +27,7 @@ const Root = ({ store }) => {
   };
 
   const _changeCurrentChannel = (state) => {
+    store.dispatch(fetchAllUsers());
     store.dispatch(changeChannel(state.params.channelName));
     store.dispatch(fetchMessages(state.params.channelName));
 

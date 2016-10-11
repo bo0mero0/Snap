@@ -28,3 +28,14 @@ export const logout = success => {
 		}
 	});
 };
+
+export const fetchAllUsers = (success) => {
+  $.ajax({
+    method: 'GET',
+    url: '/api/users',
+    success,
+    error: () => {
+      console.log("all user error");
+    }
+  });
+};

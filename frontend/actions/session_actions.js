@@ -4,6 +4,8 @@ export const SIGNUP = "SIGNUP";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SIGNUP_ERRORS = "RECEIVE_SIGNUP_ERRORS";
 export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
+export const FETCH_ALL_USERS = "FETCH_ALL_USERS";
+export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 
 export const signup = user => ({
   type: SIGNUP,
@@ -32,4 +34,13 @@ export const receiveSignupErrors = errors => ({
 export const receiveLoginErrors = errors => ({
   type: RECEIVE_LOGIN_ERRORS,
   errors
+});
+
+export const fetchAllUsers = () => ({
+  type: FETCH_ALL_USERS
+});
+
+export const receiveAllUsers = (users) => ({
+  type: RECEIVE_ALL_USERS,
+  users
 });

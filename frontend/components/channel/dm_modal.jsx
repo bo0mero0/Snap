@@ -42,6 +42,7 @@ class DmModal extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
+    this.suggestions = this.suggestions.bind(this);
 
   }
 
@@ -88,6 +89,12 @@ class DmModal extends React.Component {
      this.setState({ tags: tags });
  }
 
+  suggestions() {
+    if (this.props.allUsers) {
+    return this.props.allUsers.map((user) => user.username );
+    }
+  }
+
   render() {
     let tags = this.state.tags;
     let suggestions = this.state.suggestions;
@@ -103,7 +110,8 @@ class DmModal extends React.Component {
               <div>hello</div>
                 <div>
                   <ReactTags tags={tags}
-                      suggestions={suggestions}
+                      suggestions={this.suggestions()}
+                      placeholder={"Find or start a conversation"}
                       handleDelete={this.handleDelete}
                       handleAddition={this.handleAddition}
                       handleDrag={this.handleDrag} />
