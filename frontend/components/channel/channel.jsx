@@ -10,7 +10,6 @@ class Channel extends React.Component {
     super(props);
     this.state = {
       currentChannel: {},
-      channels: {}
     };
     this.renderChannels = this.renderChannels.bind(this);
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);

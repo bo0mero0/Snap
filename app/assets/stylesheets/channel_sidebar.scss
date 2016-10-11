@@ -68,15 +68,19 @@
   // background: #3aa3e3;
 }
 
-.ReactTags__tagInput {
-  display: flex;
+.ReactTags__tagInput input {
+  display: block;
+  width: 70%;
+  color: #555459;
 }
 
-.ReactTags__tagInput input {
-  flex-shrink: 1;
-}
+// .ReactTags__tagInput input {
+//   flex-shrink: 1;
+// }
 
 .ReactTags__selected {
+  width: calc(100% - 100px);
+  float: left;
   border: 1px solid #c5c5c5;
   border-radius: .25rem;
   padding: 12px 12px 12px 12px;
@@ -94,6 +98,64 @@
   padding-left: .5rem;
   padding-right: .5rem;
   margin-right: .375rem;
+}
+
+.ReactTags__suggestions {
+  background: #fff;
+}
+
+.ReactTags__suggestions li {
+  display: block;
+  background: #fff;
+  height: 2rem;
+  padding-left: 10px;
+  padding-right: .75rem;
+  padding-top: .6875rem;
+  cursor: pointer;
+  width: calc(100% - 20px);
+
+}
+
+.ReactTags__suggestions li:hover {
+  background: #edf7fd;
+  border: 1px solid #d3ecfa;
+  border-radius: 6px;
+}
+
+.ReactTags__suggestions li mark {
+  background: rgba(#000000, .1);
+}
+
+.ReactTags__remove {
+  margin-left: 5px;
+}
+
+.dm-disable {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background: #555459;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 3%;
+  margin-bottom: 10px;
+  font-family: "Slack-Lato",sans-serif;
+}
+
+.dm-enable {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background: #2ab27b;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 3%;
+  margin-bottom: 10px;
+  font-family: "Slack-Lato",sans-serif;
 }
 
 // .channel-sidebar:hover {

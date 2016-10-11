@@ -21,7 +21,7 @@ const customStyles = {
     border                : '1px solid #e7e7e7',
     margin                : '0 auto',
     width                 : '40%',
-    height                : '40%',
+    height                : '55%',
     minWidth             : '385px',
     minHeight            : '300px',
     transform             : 'translate(-50%, -50%)'
@@ -40,6 +40,7 @@ class LoginMenu extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.guestSubmit = this.guestSubmit.bind(this);
   }
 
   openModal () {
@@ -80,6 +81,13 @@ class LoginMenu extends React.Component {
         </ul>
       );
     }
+  }
+
+  guestSubmit(e) {
+    e.preventDefault();
+    let user = {username: "guest",
+    password: "password"}
+    this.props.login({user: user});
   }
 
   logoutUser(e) {
@@ -135,6 +143,9 @@ class LoginMenu extends React.Component {
       						<input className="login-submit" type="submit" value="Submit" />
       					</div>
       				</form>
+              <form onSubmit={this.guestSubmit}>
+                <input className="login-guest-submit" type="submit" value="Guest Login" />
+              </form>
           </Modal>
         </div>
       );

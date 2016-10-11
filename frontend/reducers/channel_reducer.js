@@ -3,6 +3,7 @@ import merge from 'lodash/merge';
 import {
   RECEIVE_CHANNELS,
   RECEIVE_SUBSCRIBE_CHANNELS,
+  RECEIVE_DM_CHANNELS,
   DELETE_CHANNEL,
   CHANGE_CHANNEL,
   RECEIVE_CHANNEL_ERRORS
@@ -11,6 +12,7 @@ import {
 const _defaultState = Object.freeze({
   currentChannel: null,
   subscribeChannels: null,
+  dmChannels: null,
   allChannels: {},
   channelErrors: []
 });
@@ -35,6 +37,11 @@ const ChannelReducer = (state = _defaultState, action) => {
     case RECEIVE_CHANNEL_ERRORS:
       const channelErrors = action.channelErrors;
       return merge({}, state, channelErrors);
+    case RECEIVE_DM_CHANNELS:
+      const receiveDmChannels = action.channels;
+      const newDmState = state;
+      newDmState.DmChannels = receiveDmChannels;
+      return merge({}, newDmState);
     default:
       return state;
   }

@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20161010201242) do
     t.string   "body",       null: false
     t.integer  "author_id",  null: false
     t.integer  "channel_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "messages", ["author_id"], name: "index_messages_on_author_id", using: :btree

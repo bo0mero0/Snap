@@ -21,7 +21,7 @@ const customStyles = {
     bottom                : 'auto',
     border                : '1px solid #e7e7e7',
     margin                : '0 auto',
-    width                 : '40%',
+    width                 : '80%',
     height                : '40%',
     minWidth             : '385px',
     minHeight            : '300px',
@@ -35,21 +35,25 @@ class DmModal extends React.Component {
     this.state = {
       modalIsOpen: false,
       tags: [],
-      suggestions: []
+      suggestions: [],
+      input: ""
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.handleCreateDmChannel = this.handleCreateDmChannel.bind(this);
+    this.handleDmChannelSubmit = this.handleDmChannelSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
     this.suggestions = this.suggestions.bind(this);
-
+    this.placeholder = this.placeholder.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleCreateDmChannel(e) {
-    this.props.createDmChannel();
-    this.closeModal();
+  handleDmChannelSubmit() {
+    if (!(this.state.tags.length === 0) && (this.state.input.lenght === 0)) {
+      this.props.createDmChannel(this.state.tags);
+      this.closeModal();
+    }
   }
 
   openModal () {
@@ -66,8 +70,14 @@ class DmModal extends React.Component {
 
   handleDelete(i) {
     let tags = this.state.tags;
-    tags.splice(i, 1);
-    this.setState({tags: tags});
+    let deleteTag = tags[1];
+
+    let index = this.state.suggestions.indexOf(this.state.tags[i].text);
+    let newSuggestions = this.state.suggestions;
+    newSuggestions.splice(index, 1);
+
+
+    this.setState({tags: tags, suggestions: newSuggestions});
   }
 
   handleAddition(tag) {
@@ -76,7 +86,11 @@ class DmModal extends React.Component {
         id: tags.length + 1,
         text: tag
     });
-    this.setState({tags: tags});
+    let newSuggestions = this.state.suggestions;
+    newSuggestions.push(tags[tags.length - 1].text);
+
+    this.setState({tags: tags, suggestions: newSuggestions});
+    document.getElementById("dh-channel-submit").className = "dm-enable";
   }
 
   handleDrag(tag, currPos, newPos) {
@@ -95,10 +109,27 @@ class DmModal extends React.Component {
     let suggestedUser;
     if (this.props.allUsers) {
       allUsers = this.props.allUsers.map((user) => ( user.username )) ;
-      suggestedUser = allUsers.filter((username) => ((this.state.tags.indexOf(username) < 0) && (username !== this.props.currentUser.username)));
+      suggestedUser = allUsers.filter((username) => ((this.state.suggestions.indexOf(username) < 0) && (username !== this.props.currentUser.username)));
       // this.setState({suggestions: suggestedUser});
     }
     return suggestedUser;
+  }
+
+  placeholder() {
+    if (this.state.tags.length === 0) {
+      return "Find or start a conversation";
+    } else {
+      return "";
+    }
+  }
+
+  handleInputChange(input) {
+    this.setState({input: input});
+    if ((this.state.tags.length !== 0) && (input.length === 0)) {
+      document.getElementById("dh-channel-submit").className = "dm-enable";
+    } else {
+      document.getElementById("dh-channel-submit").className = "dm-disable";
+    }
   }
 
   render() {
@@ -112,16 +143,19 @@ class DmModal extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}>
             <div>
-              <div>hello</div>
-                <div>
-                  <ReactTags tags={tags}
-                      minQueryLength={1}
-                      suggestions={this.suggestions()}
-                      placeholder={"Find or start a conversation"}
-                      handleDelete={this.handleDelete}
-                      handleAddition={this.handleAddition}
-                      handleDrag={this.handleDrag} />
-                  </div>
+
+              <form onSubmit={this.handleDmChannelSubmit}>
+              <ReactTags tags={tags}
+                  minQueryLength={1}
+                  handleInputChange={this.handleInputChange}
+                  suggestions={this.suggestions()}
+                  placeholder={this.placeholder()}
+                  handleDelete={this.handleDelete}
+                  handleAddition={this.handleAddition}
+                  handleDrag={this.handleDrag} />
+                <input type="submit" id="dh-channel-submit" className="dm-disable" value="Go"></input>
+              </form>
+
             </div>
 
         </Modal>

@@ -13,7 +13,7 @@ const mapStateToProps = ( state ) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: (user) => dispatch(logout(user)),
   changeChannel: (channel) => dispatch(changeChannel(channel)),
-  unsubscribeToChannel: (channelId) => dispatch(unsubscribeToChannel(channelId))
+  unsubscribeToChannel: (channelId) => dispatch(unsubscribeToChannel(channelId)),
 });
 
 export default connect(

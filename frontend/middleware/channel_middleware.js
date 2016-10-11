@@ -2,12 +2,14 @@ import {
   receiveChannels,
   receiveChannelErrors,
   receiveSubscribeChannels,
+  receiveDmChannels,
   CREATE_CHANNEL,
   DELETE_CHANNEL,
   FETCH_CHANNELS,
   FETCH_SUBSCRIBE_CHANNELS,
   SUBCRIBE_TO_CHANNEL,
-  UNSUBCRIBE_TO_CHANNEL
+  UNSUBCRIBE_TO_CHANNEL,
+  CREATE_DM_CHANNEL
 } from '../actions/channel_actions';
 
 import { fetchChannels,
@@ -15,11 +17,13 @@ import { fetchChannels,
           createChannel,
           fetchSubscribeChannels,
           subscribeToChannel,
-          unsubscribeToChannel} from '../util/channel_api_util';
+          unsubscribeToChannel,
+          createDmChannel } from '../util/channel_api_util';
 
 export default ({getState, dispatch}) => next => action => {
   const successChannelsCallback = channels => dispatch(receiveChannels(channels));
   const successSubscribeChannelsCallback = channels => dispatch(receiveSubscribeChannels(channels));
+  const successDmChannelsCallback = channels => dispatch(receiveDmChannels(channels));
   const channelErrorCallback = xhr => {
     const errors = xhr.responseJSON;
     dispatch(receiveChannelErrors(errors));
@@ -43,6 +47,9 @@ export default ({getState, dispatch}) => next => action => {
       return next(action);
     case UNSUBCRIBE_TO_CHANNEL:
       unsubscribeToChannel(action.channelId, successSubscribeChannelsCallback, channelErrorCallback);
+      return next(action);
+    case CREATE_DM_CHANNEL:
+      createDmChannel(action.users, successDmChannelsCallback, channelErrorCallback )
       return next(action);
     default:
       return next(action);
