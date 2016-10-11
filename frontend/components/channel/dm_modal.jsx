@@ -34,7 +34,8 @@ class DmModal extends React.Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      tags: []
+      tags: [],
+      suggestions: []
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -90,15 +91,19 @@ class DmModal extends React.Component {
  }
 
   suggestions() {
+    let allUsers;
+    let suggestedUser;
     if (this.props.allUsers) {
-    return this.props.allUsers.map((user) => user.username );
+      allUsers = this.props.allUsers.map((user) => ( user.username )) ;
+      suggestedUser = allUsers.filter((username) => ((this.state.tags.indexOf(username) < 0) && (username !== this.props.currentUser.username)));
+      // this.setState({suggestions: suggestedUser});
     }
+    return suggestedUser;
   }
 
   render() {
     let tags = this.state.tags;
     let suggestions = this.state.suggestions;
-
     return (
       <div>
         <button onClick={this.openModal} className="channel-dm-modal-button"> Direct Message</button>
@@ -110,6 +115,7 @@ class DmModal extends React.Component {
               <div>hello</div>
                 <div>
                   <ReactTags tags={tags}
+                      minQueryLength={1}
                       suggestions={this.suggestions()}
                       placeholder={"Find or start a conversation"}
                       handleDelete={this.handleDelete}

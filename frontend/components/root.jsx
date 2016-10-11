@@ -27,7 +27,6 @@ const Root = ({ store }) => {
   };
 
   const _changeCurrentChannel = (state) => {
-    store.dispatch(fetchAllUsers());
     store.dispatch(changeChannel(state.params.channelName));
     store.dispatch(fetchMessages(state.params.channelName));
 
@@ -35,6 +34,7 @@ const Root = ({ store }) => {
 
   const _fetchChannels = () => {
     _ensureLoggedIn();
+    store.dispatch(fetchAllUsers());
     store.dispatch(fetchSubscribeChannels(currentUser.id));
     store.dispatch(fetchChannels())
   }

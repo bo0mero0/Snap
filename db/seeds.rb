@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user1 = User.create!(username: "phi", password: "password")
+user2 = User.create!(username: "phi2", password: "password")
+user3 = User.create!(username: "phi3", password: "password")
+user4 = User.create!(username: "phi4", password: "password")
 
 
 channel1 = Channel.create!(title:"Awesome", description:"fun stuff in this channel", creator_id:1)

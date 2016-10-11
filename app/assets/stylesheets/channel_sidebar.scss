@@ -64,6 +64,38 @@
   float:right;
 }
 
+.ReactTags_tags {
+  // background: #3aa3e3;
+}
+
+.ReactTags__tagInput {
+  display: flex;
+}
+
+.ReactTags__tagInput input {
+  flex-shrink: 1;
+}
+
+.ReactTags__selected {
+  border: 1px solid #c5c5c5;
+  border-radius: .25rem;
+  padding: 12px 12px 12px 12px;
+  font-family: "Slack-Lato",sans-serif;
+  line-height: 1.5rem;
+  font-size: 1.125rem;
+}
+
+.ReactTags__tag {
+  background: #3aa3e3;
+  border-radius: .2rem;
+  float: left;
+  color: #fff;
+  font-size: .9375rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  margin-right: .375rem;
+}
+
 // .channel-sidebar:hover {
 //     // background: #000;
 //     }
