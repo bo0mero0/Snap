@@ -47,11 +47,14 @@ class DmModal extends React.Component {
     this.suggestions = this.suggestions.bind(this);
     this.placeholder = this.placeholder.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
   }
 
   handleDmChannelSubmit() {
-    if (!(this.state.tags.length === 0) && (this.state.input.lenght === 0)) {
-      this.props.createDmChannel(this.state.tags);
+    if (!(this.state.tags.length === 0) && (this.state.input.length === 0)) {
+      let newTags = this.state.tags;
+      newTags.push({id: 0, text: this.props.currentUser.username});
+      this.props.createDmChannel(newTags);
       this.closeModal();
     }
   }
@@ -64,7 +67,9 @@ class DmModal extends React.Component {
 
   closeModal () {
     this.setState({
-      modalIsOpen: false
+      modalIsOpen: false,
+      suggestions: [],
+      tags: []
     });
   }
 
@@ -75,22 +80,25 @@ class DmModal extends React.Component {
     let index = this.state.suggestions.indexOf(this.state.tags[i].text);
     let newSuggestions = this.state.suggestions;
     newSuggestions.splice(index, 1);
-
+    tags.splice(i, 1);
 
     this.setState({tags: tags, suggestions: newSuggestions});
   }
 
   handleAddition(tag) {
-    let tags = this.state.tags;
-    tags.push({
-        id: tags.length + 1,
-        text: tag
-    });
-    let newSuggestions = this.state.suggestions;
-    newSuggestions.push(tags[tags.length - 1].text);
+    let allUsers = this.props.allUsers.map((user) => ( user.username ));
+    if (allUsers.indexOf(tag) > -1) {
+      let tags = this.state.tags;
+      tags.push({
+          id: tags.length + 1,
+          text: tag
+      });
+      let newSuggestions = this.state.suggestions;
+      newSuggestions.push(tags[tags.length - 1].text);
 
-    this.setState({tags: tags, suggestions: newSuggestions});
-    document.getElementById("dh-channel-submit").className = "dm-enable";
+      this.setState({tags: tags, suggestions: newSuggestions, input: ""});
+      document.getElementById("dh-channel-submit").className = "dm-enable";
+    }
   }
 
   handleDrag(tag, currPos, newPos) {
@@ -132,6 +140,12 @@ class DmModal extends React.Component {
     }
   }
 
+  afterOpenModal() {
+    // this.setState({
+    //   suggestions: []
+    // });
+  }
+
   render() {
     let tags = this.state.tags;
     let suggestions = this.state.suggestions;
@@ -141,6 +155,7 @@ class DmModal extends React.Component {
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
+          onAfterOpen={this.afterOpenModal}
           style={customStyles}>
             <div>
 

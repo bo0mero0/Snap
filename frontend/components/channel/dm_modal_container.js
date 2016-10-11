@@ -10,7 +10,7 @@ const mapStateToProps = ( state ) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   changeChannel: (channel) => dispatch(changeChannel(channel)),
-  createDmChannel: (users) => dispatch(createDmChannel(channel))
+  createDmChannel: (users) => dispatch(createDmChannel(users))
 });
 
 export default connect(

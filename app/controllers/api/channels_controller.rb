@@ -47,7 +47,8 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
-    
+    debugger
+  
   end
 
   private
