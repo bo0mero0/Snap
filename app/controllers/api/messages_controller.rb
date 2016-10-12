@@ -9,9 +9,18 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
-    channel_id = Channel.find_by(title: message_params[:channelName]).id
+    channel = Channel.find_by(title: message_params[:channelName])
+    if (channel.channel_type == "dm")
+      channel.title.split(",").each do |name|
+        user = User.find_by(username: name)
+        if (!channel.users.include?(user))
+          channel.users.push(user)
+        end
+      end
+    end
+
     # + params[:message][:channel_id].to_
-    @message = Message.new(body: message_params[:body], author_id: message_params[:author_id], channel_id: channel_id)
+    @message = Message.new(body: message_params[:body], author_id: message_params[:author_id], channel_id: channel.id)
     if @message.save
       Channel.find_by(title: params[:message][:channelName]).users.each do |user|
       notification = Notification.find_or_create_by(user_id: user.id, channel_name: params[:message][:channelName])
