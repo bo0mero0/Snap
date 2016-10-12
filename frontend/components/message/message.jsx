@@ -28,6 +28,7 @@ class Message extends React.Component {
     var channel = this.pusher.subscribe('chat1');
     channel.bind('message_created', data => {
       this.props.fetchMessages(this.props.currentChannel);
+      this.props.receiveNotification(data.channel_name);
     });
   }
 

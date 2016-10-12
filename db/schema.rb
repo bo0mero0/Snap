@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011233543) do
+ActiveRecord::Schema.define(version: 20161012135912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20161011233543) do
 
   add_index "messages", ["author_id"], name: "index_messages_on_author_id", using: :btree
   add_index "messages", ["channel_id"], name: "index_messages_on_channel_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",         null: false
+    t.string   "channel_name",    null: false
+    t.integer  "num_new_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username",        null: false

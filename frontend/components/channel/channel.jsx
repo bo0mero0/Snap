@@ -43,18 +43,27 @@ class Channel extends React.Component {
       }
     }
     let channelsHtml = channelsName.map( channelName => {
+      // console.log(Object.keys(this.props.notification));
+      // console.log(Object.keys(this.props.notification).indexOf(channelName[0]));
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
                   <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
-        return (<li className="channel"  key={channelName[1]}>
-                  <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
-                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
-                </li>);
+        if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
+          return (<li className="noti-channel"  key={channelName[1]}>
+                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                  </li>);
+        } else {
+          return (<li className="channel"  key={channelName[1]}>
+                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                  </li>);
+        }
       }
-  });
+    });
     return channelsHtml;
   }
 

@@ -7,7 +7,8 @@ const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,
   allChannels: state.channel.allChannels,
   subscribeChannels: state.channel.subscribeChannels,
-  currentChannel: state.channel.currentChannel
+  currentChannel: state.channel.currentChannel,
+  notification: state.message.notification
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

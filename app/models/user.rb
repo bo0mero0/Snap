@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
     class_name: "Channel",
     foreign_key: :creator_id
 
+  has_many :notifications
+
 	attr_reader :password
 
 	validates :username, :password_digest, :session_token, presence: true

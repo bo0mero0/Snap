@@ -10,11 +10,12 @@ class Api::MessagesController < ApplicationController
 
   def create
     channel_id = Channel.find_by(title: message_params[:channelName]).id
-    # + params[:message][:channel_id].to_s
+    # + params[:message][:channel_id].to_
     @message = Message.new(body: message_params[:body], author_id: message_params[:author_id], channel_id: channel_id)
     if @message.save
-      Pusher.trigger('chat1' , 'message_created', {
 
+      Pusher.trigger('chat1' , 'message_created', {
+        channel_name: params[:message][:channelName]
       })
 
       render :show
