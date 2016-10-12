@@ -85,7 +85,7 @@ class Channel extends React.Component {
     let channelsHtml = channelsName.map( channelName => {
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
@@ -96,7 +96,7 @@ class Channel extends React.Component {
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
-                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }
