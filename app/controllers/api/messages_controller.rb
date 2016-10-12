@@ -14,6 +14,7 @@ class Api::MessagesController < ApplicationController
       channel.title.split(",").each do |name|
         user = User.find_by(username: name)
         if (!channel.users.include?(user))
+
           channel.users.push(user)
         end
       end
