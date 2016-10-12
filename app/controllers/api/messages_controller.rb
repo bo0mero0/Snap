@@ -13,7 +13,11 @@ class Api::MessagesController < ApplicationController
     # + params[:message][:channel_id].to_
     @message = Message.new(body: message_params[:body], author_id: message_params[:author_id], channel_id: channel_id)
     if @message.save
-
+      Channel.find_by(title: params[:message][:channelName]).users.each do |user|
+      notification = Notification.find_or_create_by(user_id: user.id, channel_name: params[:message][:channelName])
+      notification.num_new_message += 1
+      notification.save
+      end
       Pusher.trigger('chat1' , 'message_created', {
         channel_name: params[:message][:channelName]
       })

@@ -14,4 +14,10 @@ class Notification < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, :channel_name, presence: true
+
+  before_save :default_values
+
+  def default_values
+    self.num_new_message ||= 0
+  end
 end

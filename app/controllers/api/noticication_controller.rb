@@ -5,7 +5,7 @@ class Api::NotificationController < ApplicationController
   end
 
   def create
-  @notication = Notification.new(_params)
+  @notificcation = Notification.new(_params)
 
     if @notification.save
       render "api/users/show"

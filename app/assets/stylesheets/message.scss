@@ -14,7 +14,7 @@
 .messages {
   position: absolute;
   display: block;
-  width: calc(100% - 297px);
+  width: calc(100% - 221px);
   overflow-y: auto;
   max-height: calc(100% - 65px);
   margin-bottom: 65px;
@@ -80,8 +80,11 @@
   margin-right: 16px
 }
 
-// .messages::-webkit-scrollbar-track {
-//   background-color: rgba(#fff, .3);
-//
-//   outline: 3px solid slategrey;
-// }
+.messages::-webkit-scrollbar {
+  background: rgba(#fff, .0);
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: rgba(#ccc, .5);
+  border-radius: 8px;
+}

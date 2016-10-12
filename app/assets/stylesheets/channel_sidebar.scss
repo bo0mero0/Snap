@@ -19,6 +19,15 @@
   overflow-x: hidden;
 }
 
+.channels-container::-webkit-scrollbar {
+  background: rgba(#fff, .0);
+}
+
+.channels-container::-webkit-scrollbar-thumb {
+  background-color: rgba(#ccc, .5);
+  border-radius: 8px;
+}
+
 .channel-header {
   text-transform: capitalize;
   padding-left: 16px;
@@ -80,6 +89,33 @@
   width: 150px;
   float: left;
   overflow-x: hidden;
+}
+
+.noti-dm-channel {
+  font-family: "Slack-Lato", "appleLogo" ,sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-left: 16px;
+  padding-right: 4px;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  word-break: keep-all;
+  white-space: nowrap;
+  width: 150px;
+  float: left;
+  overflow-x: hidden;
+}
+
+.noti-dm-channel button {
+  margin-right: -4px;
+  background: #000000;
+  border-radius: 9px;
+  font-size: .8rem;
+  padding-left: 7px;
+  line-height: 15px;
+  margin-top: 5px;
 }
 
 .channels button {

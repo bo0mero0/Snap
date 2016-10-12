@@ -4,7 +4,9 @@ export const FETCH_MESSAGES = "FETCH_MESSAGES";
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
-export const RECEIVE_NOTIFICATION = "RECEIVE_NOTIFICATION"
+export const RECEIVE_NOTIFICATION = "RECEIVE_NOTIFICATION";
+export const RECEIVE_NOTIFICATIONS = "RECEIVE_NOTIFICATIONS";
+export const RECEIVE_DELETE_NOTI = "RECEIVE_DELETE_NOTI";
 
 
 export const createMessage = (message) => ({
@@ -40,4 +42,14 @@ export const receiveMessage = (message) => ({
 export const receiveNotification = (channelName) => ({
  type: RECEIVE_NOTIFICATION,
  channelName
+});
+
+export const receiveNotifications = (notifications) => ({
+ type: RECEIVE_NOTIFICATIONS,
+ notifications
+});
+
+export const receiveDeleteNoti = (channelName) => ({
+  type: RECEIVE_DELETE_NOTI,
+  channelName
 });

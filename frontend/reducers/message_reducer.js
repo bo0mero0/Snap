@@ -5,7 +5,9 @@ import {
   RECEIVE_MESSAGE,
   DELETE_MESSAGE,
   RECEIVE_MESSAGE_ERRORS,
-  RECEIVE_NOTIFICATION
+  RECEIVE_NOTIFICATION,
+  RECEIVE_NOTIFICATIONS,
+  RECEIVE_DELETE_NOTI
 } from '../actions/message_actions';
 
 const _defaultState = Object.freeze({
@@ -17,7 +19,9 @@ const _defaultState = Object.freeze({
 const MessageReducer = (state = _defaultState, action) => {
   switch (action.type) {
     case RECEIVE_MESSAGES:
-      return merge({}, state, {messages: action.messages});
+      let receiveMessages = merge({}, state);
+      receiveMessages.messages = action.messages;
+      return receiveMessages;
     case DELETE_MESSAGE:
       let newMessages = {};
       newMessage = state;
@@ -38,6 +42,14 @@ const MessageReducer = (state = _defaultState, action) => {
         notiState.notification[action.channelName] = 1
       }
       return notiState
+    case RECEIVE_NOTIFICATIONS:
+      let notisState = merge({}, state);
+      notisState.notification = action.notifications;
+      return notisState;
+    case RECEIVE_DELETE_NOTI:
+      let delNotiState = merge({}, state);
+      delete delNotiState.notification[action.channelName];
+      return delNotiState;
     default:
       return state;
 

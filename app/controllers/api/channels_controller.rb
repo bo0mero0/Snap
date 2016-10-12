@@ -7,7 +7,7 @@ class Api::ChannelsController < ApplicationController
   def show
     @channels = User.find_by(id: params[:id]).channels
   end
-  # 
+  #
   # def dm_show
   #   @channel = User.find_by(id: params[:id]).channels.where(channel_type: "dm")
   #   render "api/channels/dm_show"
@@ -23,6 +23,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def destroy
+    debugger
     channel = Channel.find_by_title(params[:channel][:title])
 
     if channel
@@ -69,6 +70,20 @@ class Api::ChannelsController < ApplicationController
       @channel.users.push(creator)
       render "api/channels/create_dm"
     end
+  end
+
+  def edit_noti
+    noti = Notification.find_by(channel_name: params[:notification][:channelName], user_id: params[:notification][:userId])
+    if noti
+      noti.delete
+      render json: {}
+    end
+      render json: {}
+  end
+
+  def noti_index
+    @notifications = User.find(params[:userId]).notifications
+    render "api/channels/noti_index"
   end
 
   private

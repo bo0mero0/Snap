@@ -63,3 +63,22 @@ export const createDmChannel = (users, success, error) => {
     error
   });
 };
+
+export const deleteNotification = (notification, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/notification`,
+    data: {notification},
+    error
+  });
+};
+
+export const fetchNoti = (userId, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `api/notification`,
+    data: {userId},
+    success,
+    error
+  });
+};

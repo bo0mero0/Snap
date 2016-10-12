@@ -14,12 +14,15 @@ class Channel extends React.Component {
     this.renderChannels = this.renderChannels.bind(this);
     this.renderDmChannels = this.renderDmChannels.bind(this);
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+    this.deleteNoti = this.deleteNoti.bind(this);
     // this.channelSelector = this.channelSelector.bind(this);
   }
 
   componentDidMount() {
-    if (!this.props.currentChannel) {
-      hashHistory.push(`/messages/Awesome`);
+    this.props.deleteNotification({channelName: this.props.params.channelName, userId: this.props.currentUser.id});
+    this.props.receiveDeleteNoti(this.props.params.channelName);
+    if (!this.props.params.channelName) {
+      hashHistory.push(`/messages/general`);
     }
   }
 
@@ -35,6 +38,11 @@ class Channel extends React.Component {
     hashHistory.push(`/messages/Awesome`);
   }
 
+  deleteNoti() {
+    this.props.deleteNotification({channelName: this.props.params.channelName, userId: this.props.currentUser.id});
+    this.props.receiveDeleteNoti(this.props.params.channelName);
+  }
+
   renderChannels() {
     let channelsName = [];
     for (var id in this.props.subscribeChannels) {
@@ -47,18 +55,18 @@ class Channel extends React.Component {
       // console.log(Object.keys(this.props.notification).indexOf(channelName[0]));
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
           return (<li className="noti-channel"  key={channelName[1]}>
-                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
-                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }
@@ -81,10 +89,17 @@ class Channel extends React.Component {
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
-        return (<li className="channel"  key={channelName[1]}>
-                  <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
-                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
-                </li>);
+        if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
+          return (<li className="noti-dm-channel"  key={channelName[1]}>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
+                  </li>);
+        } else {
+          return (<li className="channel"  key={channelName[1]}>
+                    <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                  </li>);
+        }
       }
   });
     return channelsHtml;
