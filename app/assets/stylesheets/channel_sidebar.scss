@@ -22,6 +22,24 @@
   padding-left: 16px;
   padding-bottom: 10px;
 }
+
+.channel-subscribe-modal-button, .channel-dm-modal-button {
+  font-size: .8rem;
+  font-weight: bold;
+  color: #39383c;
+  font-family: "Slack-Lato", "appleLogo" ,sans-serif;
+  margin-left: 16px;
+
+}
+
+.channel-subscribe-modal-button:hover {
+  color: #000;
+}
+
+.channel-dm-modal-button:hover {
+  color: #000;
+}
+
 .channels {
   line-height: 1.6rem;
 }
@@ -40,6 +58,7 @@
 
 .channel button {
   float:right;
+  color: #afafaf;
 }
 
 .channel:hover {
@@ -156,6 +175,48 @@
   border-radius: 3%;
   margin-bottom: 10px;
   font-family: "Slack-Lato",sans-serif;
+}
+
+.subscribe-channels-container {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  color: #555459;
+}
+
+.subscribe-channel {
+  border-top: 1px solid #e8e8e8;
+  font-size: 16px;
+  padding: 12px 0 12px 10px;
+  width: calc(100% - 13px);
+  font-family: "Slack-Lato",sans-serif;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.subscribe-channel-link {
+  width: 100%
+}
+
+.sub-created_at {
+  color: #9e9ea6;
+  font-family: "Slack-Lato",sans-serif;
+  line-height: 19.6px;
+  font-style: italic;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5rem;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.sub-created_at li {
+  float: left;
+}
+
+.creator {
+  color: #67686e;
+  margin: 0 3px 0 3px;
 }
 
 // .channel-sidebar:hover {

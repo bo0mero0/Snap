@@ -7,6 +7,11 @@ class Api::ChannelsController < ApplicationController
   def show
     @channels = User.find_by(id: params[:id]).channels
   end
+  # 
+  # def dm_show
+  #   @channel = User.find_by(id: params[:id]).channels.where(channel_type: "dm")
+  #   render "api/channels/dm_show"
+  # end
 
   def create
     @channel = Channel.new(channel_params)
@@ -47,8 +52,23 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
-    debugger
-  
+    users_name = []
+    params[:users].keys.each do |key|
+      users_name.push(params[:users][key.to_s]["text"])
+    end
+    creator = User.find_by(username: users_name.last)
+    @channel = Channel.find_by(title: users_name.join(","))
+    if (@channel.nil?)
+      @channel = Channel.create!(title: users_name.join(","), creator_id: creator.id, channel_type: "dm")
+      @channel.save
+      users_name.each do |username|
+        @channel.users.push(User.find_by(username: username))
+      end
+      render "api/channels/create_dm"
+    else
+      @channel.users.push(creator)
+      render "api/channels/create_dm"
+    end
   end
 
   private
@@ -57,7 +77,4 @@ class Api::ChannelsController < ApplicationController
     params.require(:channel).permit(:title, :description, :creator_id, :icon_url)
   end
 
-  def dm_params
-    params.permit(:users)
-  end
 end

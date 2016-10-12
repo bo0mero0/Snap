@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     through: :channel_subscriptions,
     source: :channel
 
+  has_many :created_channels,
+    class_name: "Channel",
+    foreign_key: :creator_id
+
 	attr_reader :password
 
 	validates :username, :password_digest, :session_token, presence: true

@@ -120,7 +120,9 @@ class DmModal extends React.Component {
       suggestedUser = allUsers.filter((username) => ((this.state.suggestions.indexOf(username) < 0) && (username !== this.props.currentUser.username)));
       // this.setState({suggestions: suggestedUser});
     }
-    return suggestedUser;
+    if (suggestedUser) {
+      return suggestedUser.sort();
+    }
   }
 
   placeholder() {
@@ -151,7 +153,7 @@ class DmModal extends React.Component {
     let suggestions = this.state.suggestions;
     return (
       <div>
-        <button onClick={this.openModal} className="channel-dm-modal-button"> Direct Message</button>
+        <button onClick={this.openModal} className="channel-dm-modal-button"> DIRECT MESSAGE</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}

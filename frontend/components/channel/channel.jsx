@@ -12,6 +12,7 @@ class Channel extends React.Component {
       currentChannel: {},
     };
     this.renderChannels = this.renderChannels.bind(this);
+    this.renderDmChannels = this.renderDmChannels.bind(this);
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
     // this.channelSelector = this.channelSelector.bind(this);
   }
@@ -37,7 +38,32 @@ class Channel extends React.Component {
   renderChannels() {
     let channelsName = [];
     for (var id in this.props.subscribeChannels) {
+      if (this.props.subscribeChannels[id].channel_type === "channel") {
         channelsName.push([this.props.subscribeChannels[id].title, id]);
+      }
+    }
+    let channelsHtml = channelsName.map( channelName => {
+      if ( channelName[0] === this.props.currentChannel) {
+        return (<li className="current-channel"  key={channelName[1]} >
+                  <Link to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                </li>);
+      } else {
+        return (<li className="channel"  key={channelName[1]}>
+                  <Link to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                  <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                </li>);
+      }
+  });
+    return channelsHtml;
+  }
+
+  renderDmChannels() {
+    let channelsName = [];
+    for (var id in this.props.subscribeChannels) {
+      if (this.props.subscribeChannels[id].channel_type === "dm") {
+        channelsName.push([this.props.subscribeChannels[id].title, id]);
+      }
     }
     let channelsHtml = channelsName.map( channelName => {
       if ( channelName[0] === this.props.currentChannel) {
@@ -56,7 +82,6 @@ class Channel extends React.Component {
   }
 
 
-
   render () {
     return (
       <div className="channel-sidebar group">
@@ -67,6 +92,9 @@ class Channel extends React.Component {
             { this.renderChannels() }
           </ul>
           <DmModal/>
+          <ul className="channels">
+            { this.renderDmChannels() }
+          </ul>
         </div>
         {this.props.children}
       </div>

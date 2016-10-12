@@ -8,6 +8,8 @@
 #  icon_url     :string
 #  creator_id   :integer
 #  channel_type :string           default("channel")
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 class Channel < ActiveRecord::Base
@@ -17,6 +19,10 @@ class Channel < ActiveRecord::Base
   has_many :users,
     through: :channel_subscriptions,
     source: :user
+
+  belongs_to :creator,
+    class_name: "User",
+    foreign_key: :creator_id
 
   validates :title, :creator_id, presence: true
   validates :title, uniqueness: true, length: {minimum: 6}

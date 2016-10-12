@@ -21,8 +21,8 @@ const customStyles = {
     margin                : '0 auto',
     width                 : '40%',
     height                : '40%',
-    minWidth             : '385px',
-    minHeight            : '300px',
+    minWidth              : '385px',
+    minHeight             : '300px',
     transform             : 'translate(-50%, -50%)'
   }
 };
@@ -63,13 +63,19 @@ class SubscribeModal extends React.Component {
       filteredChannelsId = Object.keys(this.props.allChannels).filter((key) => {
         return Object.keys(this.props.subscribeChannels).indexOf(key) < 0;
       });
-
       channelsName = filteredChannelsId.map( id => {
-        return (<li className="channel"  key={id} value={id}
+        return (<li className="subscribe-channel"  key={id} value={id}
           onClick={this.handleSubscribe}>
-          <Link to={"messages/" + this.props.allChannels[id].title}>
-             {this.props.allChannels[id].title}
+          <Link className="subscribe-channel-link" to={"messages/" + this.props.allChannels[id].title}>
+             ✑ {this.props.allChannels[id].title}
            </Link>
+          <div className="sub-created_at">
+            <ul>
+              <li>Created by</li>
+              <li className="creator">{this.props.allChannels[id].creator}</li>
+              <li>on {this.props.allChannels[id].created_at}</li>
+            </ul>
+          </div>
         </li>
         );
       });
@@ -85,8 +91,7 @@ class SubscribeModal extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           style={customStyles}>
-            <div>hello</div>
-            <ul>
+            <ul className="subscribe-channels-container">
               {this.renderAllChannels()}
             </ul>
 
