@@ -39,7 +39,7 @@ class ChatHeader extends React.Component {
       return (
         <div className="chat-header group">
           <div className="channel-info">
-            <img src="/assets/nib-flat-bw.png" alt="MDN"/>
+            <img src={window.snapAssets.favicon_icon_bw} alt="MDN"/>
             <div className="chat-header-channel-name">{this.props.currentChannel}</div>
             <div className="num-user-online"><span>{this.renderNumOnline()}</span> members online</div>
             <div className="channel-description">"{this.renderChannelDescription()}!"</div>

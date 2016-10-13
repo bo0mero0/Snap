@@ -7,7 +7,7 @@ export const fetchChannels = (success, error) => {
   });
 };
 
-export const fetchSubscribeChannels = (currentUserId, success, error) => {
+export const apiFetchSubscribeChannels = (currentUserId, success, error) => {
   $.ajax({
     method: 'GET',
     url: `/api/channels/${currentUserId}`,

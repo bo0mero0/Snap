@@ -4,6 +4,7 @@ import {
   receiveSubscribeChannels,
   receiveDmChannels,
   receiveOnlineChannels,
+  fetchSubscribeChannels,
   CREATE_CHANNEL,
   DELETE_CHANNEL,
   FETCH_CHANNELS,
@@ -13,15 +14,18 @@ import {
   UNSUBCRIBE_TO_CHANNEL,
   CREATE_DM_CHANNEL,
   DELETE_NOTIFICATION,
-  FETCH_NOTI
+  FETCH_NOTI,
+  RECEIVE_DM_CHANNELS
 } from '../actions/channel_actions';
+
+import { hashHistory } from 'react-router';
 
 import {receiveNotifications} from '../actions/message_actions';
 
 import { fetchChannels,
           deleteChannel,
+          apiFetchSubscribeChannels,
           createChannel,
-          fetchSubscribeChannels,
           subscribeToChannel,
           unsubscribeToChannel,
           createDmChannel,
@@ -34,7 +38,10 @@ export default ({getState, dispatch}) => next => action => {
   const successFetchNotiCallback = notifications => dispatch(receiveNotifications(notifications));
   const successSubscribeChannelsCallback = channels => dispatch(receiveSubscribeChannels(channels));
   const successOnlineChannelCallBack = (channels) => dispatch(receiveOnlineChannels(channels));
-  const successDmChannelsCallback = channels => dispatch(receiveDmChannels(channels));
+  const successDmChannelsCallback = channels => {
+    dispatch(fetchSubscribeChannels(getState().session.currentUser.id));
+    dispatch(receiveDmChannels(channels));
+  };
   const channelErrorCallback = xhr => {
     const errors = xhr.responseJSON;
     dispatch(receiveChannelErrors(errors));
@@ -51,7 +58,7 @@ export default ({getState, dispatch}) => next => action => {
       fetchChannels(successChannelsCallback, channelErrorCallback);
       return next(action);
     case FETCH_SUBSCRIBE_CHANNELS:
-      fetchSubscribeChannels(action.currentUserId, successSubscribeChannelsCallback, channelErrorCallback );
+      apiFetchSubscribeChannels(action.currentUserId, successSubscribeChannelsCallback, channelErrorCallback );
       return next(action);
     case SUBCRIBE_TO_CHANNEL:
       subscribeToChannel(action.channelId, successSubscribeChannelsCallback, channelErrorCallback);
@@ -71,6 +78,8 @@ export default ({getState, dispatch}) => next => action => {
     case FETCH_ONLINE_CHANNELS:
       fetchOnlineChannels(successOnlineChannelCallBack, channelErrorCallback);
       return next(action);
+    case RECEIVE_DM_CHANNELS:
+      hashHistory.push(`/messages/${action.channels.title}`);
     default:
       return next(action);
   }

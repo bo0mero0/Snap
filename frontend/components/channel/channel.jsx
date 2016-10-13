@@ -54,7 +54,9 @@ class Channel extends React.Component {
 
   handleUnsubscribe(e) {
     this.props.unsubscribeToChannel(e.currentTarget.value);
-    hashHistory.push(`/messages/Awesome`);
+    if (this.props.currentChannel === this.props.allChannels[e.currentTarget.value].title) {
+      hashHistory.push(`/messages/general`);
+    }
   }
 
   deleteNoti() {

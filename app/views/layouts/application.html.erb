@@ -2,17 +2,22 @@
 <html>
 <head>
   <title>Snap</title>
-  <link id="favicon" href="/assets/nib-flat.png" rel="shortcut icon" type="image/x-icon" />
+  <link id="favicon" href={window.snapAssets.favicon_icon} rel="shortcut icon" type="image/x-icon" />
   <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
   <script type="text/javascript">
     window.snapAssets = {
       // image_url is a rails helper method that does the fingerprinting
       // so we need erb tag to use ruby
       // file name is an argument to the image_url method
-      firstImage: "<%= image_url("Nature-Night-Sky-Stars-Blurred-Light-Show-Mountains-WallpapersByte-com-3840x2400.jpg") %>"
+      firstImage: "<%= image_url("Nature-Night-Sky-Stars-Blurred-Light-Show-Mountains-WallpapersByte-com-3840x2400.jpg") %>",
+      favicon_icon: "<%= image_url("nib-flat.png") %>",
+      favicon_icon_noti: "<%= image_url("nib-flat-noti.png") %>",
+      favicon_icon_bw: "<%= image_url("nib-flat-bw.png") %>",
+      ding: "<%= asset_url("ding.mp3") %>"
     }
   </script>
 

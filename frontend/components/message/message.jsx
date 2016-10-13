@@ -31,7 +31,7 @@ class Message extends React.Component {
     var channel = this.pusher.subscribe('chat1');
     channel.bind('message_created', data => {
       this.props.fetchMessages(this.props.currentChannel);
-      if (data.channel_name) {
+      if (data.channel_name && data.channel_name !== this.props.currentChannel) {
         this.props.receiveNotification(data.channel_name);
       }
       if (!this.props.focus) {
@@ -45,24 +45,26 @@ class Message extends React.Component {
   }
 
   notify(author, message) {
-
+    author = author.replace(/\b\w/g, l => l.toUpperCase());
     if (Notification.permission !== "granted") {
       Notification.requestPermission();
     } else {
       var notification = new Notification(author, {
         icon: '/assets/nib-flat.png',
         body: message,
+        sound: window.snapAssets.ding
       });
 
       notification.onclick = function () {
-        window.open("http://stackoverflow.com/a/13328397/1269037");
+        window.open("http://ohsnap.herokuapp.com/#/messages");
       };
+      setTimeout(function() { notification.close();}, 2000);
     }
   }
 
   updateTab() {
     document.title = '!Snap';
-    document.getElementById('favicon').href = "/assets/nib-flat-noti.png";
+    document.getElementById('favicon').href = window.snapAssets.favicon_icon_noti;
   }
 
   componentDidUpdate(){

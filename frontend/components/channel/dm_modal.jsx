@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { hashHistory } from 'react-router';
 
 
 const customStyles = {
@@ -56,6 +57,7 @@ class DmModal extends React.Component {
       newTags.push({id: 0, text: this.props.currentUser.username});
       this.props.createDmChannel(newTags);
       this.closeModal();
+
     }
   }
 

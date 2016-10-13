@@ -23,7 +23,6 @@ class Api::ChannelsController < ApplicationController
   end
 
   def destroy
-    debugger
     channel = Channel.find_by_title(params[:channel][:title])
 
     if channel
@@ -54,7 +53,7 @@ class Api::ChannelsController < ApplicationController
 
   def create_dm
     users_name = []
-    params[:users].keys.each do |key|
+    params[:users].keys.sort.each do |key|
       users_name.push(params[:users][key.to_s]["text"])
     end
     creator = User.find_by(username: users_name.last)
