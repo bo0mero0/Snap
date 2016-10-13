@@ -40,7 +40,6 @@ class Api::SessionsController < ApplicationController
 	end
 
 	def go_offline
-		debugger
 		user = User.find_by(username: params[:username])
 		user.online.online = false
 		user.online.save
