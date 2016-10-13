@@ -29,7 +29,9 @@ class Api::MessagesController < ApplicationController
       notification.save
       end
       Pusher.trigger('chat1' , 'message_created', {
-        channel_name: params[:message][:channelName]
+        channel_name: params[:message][:channelName],
+        message: @message.body,
+        author: @message.author.username
       })
 
       render :show

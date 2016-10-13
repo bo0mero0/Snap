@@ -11,6 +11,7 @@ class Message extends React.Component {
     };
     this.renderMessages = this.renderMessages.bind(this);
     this.updateTab = this.updateTab.bind(this);
+    this.notify = this.notify.bind(this);
   }
 
   // shouldComponentUpdate() {
@@ -33,14 +34,30 @@ class Message extends React.Component {
       if (data.channel_name) {
         this.props.receiveNotification(data.channel_name);
       }
-      console.log(this.props.focus);
       if (!this.props.focus) {
-        console.log(this.updateTab);
+
         this.updateTab();
+        this.notify(data.author, data.message);
       }
       this.props.fetchSubscribeChannels(this.props.currentUser.id);
 
     });
+  }
+
+  notify(author, message) {
+
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    } else {
+      var notification = new Notification(author, {
+        icon: '/assets/nib-flat.png',
+        body: message,
+      });
+
+      notification.onclick = function () {
+        window.open("http://stackoverflow.com/a/13328397/1269037");
+      };
+    }
   }
 
   updateTab() {
@@ -83,7 +100,7 @@ class Message extends React.Component {
       } else {
         return (
         <li className="message-container" key={message.id}>
-          <div className="author-time-message-container single-message">
+          <div className="author-time-message-container">
             <div className="message" key={message.id} value={message.id}>{message.body}</div>
           </div>
         </li>
