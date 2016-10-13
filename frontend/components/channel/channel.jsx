@@ -1,3 +1,4 @@
+/* globals Pusher */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
@@ -16,6 +17,10 @@ class Channel extends React.Component {
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
     this.deleteNoti = this.deleteNoti.bind(this);
     // this.channelSelector = this.channelSelector.bind(this);
+    const goOffline = this.props.goOffline.bind(this);
+    window.onbeforeunload = () => {
+      goOffline(this.props.currentUser.username);
+    };
   }
 
   componentDidMount() {
@@ -24,18 +29,18 @@ class Channel extends React.Component {
     if (!this.props.params.channelName) {
       hashHistory.push(`/messages/general`);
     }
+    this.pusher = new Pusher('c0b1744978ade9f1c5a4', {
+      encrypted: true
+    });
+
+    var channel = this.pusher.subscribe('chat1');
+    channel.bind('online_status', data => {
+      this.props.fetchOnlineChannels();
+    });
   }
 
-  componentWillUnmount() {
-    console.log("hello");
-    debugger
-    this.props.goOffline(this.props.currentUser.username);
-  }
 
-  // window.onbeforeunload = () => {
-  //   debugger
-  //   console.log("hello");
-  // }
+  // this.props.goOffline(this.props.currentUser.username);
 
   // window.addEventListener("beforeunload", function(e){
   //  // Do something
@@ -102,21 +107,27 @@ class Channel extends React.Component {
         channelsName.push([this.props.subscribeChannels[id].title, id]);
       }
     }
+    let onlineTagClass;
     let channelsHtml = channelsName.map( channelName => {
+      if (Object.keys(this.props.onlineChannels).indexOf(channelName[0]) >= 0) {
+        onlineTagClass = "online-icon";
+      } else {
+        onlineTagClass = "nothing";
+      }
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
           return (<li className="noti-dm-channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                     <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }

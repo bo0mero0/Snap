@@ -43,8 +43,6 @@ class Message extends React.Component {
   }
 
   componentWillUnmount() {
-        console.log("hello2");
-    debugger
     this.pusher.unsubcribe('chat1');
   }
 

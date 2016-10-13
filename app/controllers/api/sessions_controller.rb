@@ -34,7 +34,7 @@ class Api::SessionsController < ApplicationController
 		user = User.find_by(username: params[:username])
 		user.online.online = true
 		user.online.save
-		Pusher.trigger('chat1' , 'message_created', {})
+		Pusher.trigger('chat1' , 'online_status', {})
 		render json: {}
 
 	end
@@ -44,7 +44,7 @@ class Api::SessionsController < ApplicationController
 		user = User.find_by(username: params[:username])
 		user.online.online = false
 		user.online.save
-		Pusher.trigger('chat1' , 'message_created', {})
+		Pusher.trigger('chat1' , 'online_status', {})
 		render json: {}
 
 	end

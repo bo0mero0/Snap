@@ -3,6 +3,7 @@ import Message from './message';
 import { fetchMessages, createMessage, receiveNotification} from '../../actions/message_actions';
 import { fetchSubscribeChannels } from '../../actions/channel_actions';
 
+
 const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,
   currentChannel: state.channel.currentChannel,

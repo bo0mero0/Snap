@@ -86,12 +86,13 @@ class LoginMenu extends React.Component {
   guestSubmit(e) {
     e.preventDefault();
     let user = {username: "guest",
-    password: "password"}
+    password: "password"};
     this.props.login({user: user});
   }
 
   logoutUser(e) {
     e.preventDefault();
+    this.props.goOffline(this.props.currentUser.username);
     this.setState({
       modalIsOpen: false
     });

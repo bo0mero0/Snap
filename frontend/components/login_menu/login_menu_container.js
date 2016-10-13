@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LoginMenu from './login_menu';
-import { login, logout } from '../../actions/session_actions';
+import { login, logout, goOffline } from '../../actions/session_actions';
 
 const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,
@@ -10,6 +10,7 @@ const mapStateToProps = ( state ) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: () => dispatch(logout()),
   login: (user) => dispatch(login(user)),
+  goOffline: (username) => dispatch(goOffline(username))
 
 });
 
