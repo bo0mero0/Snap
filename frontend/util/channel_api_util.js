@@ -82,3 +82,12 @@ export const fetchNoti = (userId, success, error) => {
     error
   });
 };
+
+export const fetchOnlineChannels = (success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `api/onlineChannel`,
+    success,
+    error
+  });
+};

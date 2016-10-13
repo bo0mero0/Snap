@@ -31,10 +31,19 @@
 .message-icon {
   display: block;
   float: left;
+  width: 36px;
+  height: 36px;
   margin-right: 10px;
   margin-left: 26px;
   line-height: 36px;
   font-size: 20px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.message-icon img {
+  width: 36px;
+  height: 36px;
 }
 
 .author-time-message-container {
@@ -60,8 +69,12 @@
 
 .message {
   display: block;
+  line-height: 1.6rem;
 }
 
+.single-message {
+  margin-left: 73px;
+}
 .chat-submit {
   display: none;
 }

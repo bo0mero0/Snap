@@ -21,15 +21,17 @@ const SessionReducer = (state = _defaultState, action) => {
       currentUser
     });
   case LOGOUT:
-    return merge({}, _defaultState);
+    let logoutState = merge({}, state);
+    logoutState.currentUser = null;
+    return logoutState;
   case RECEIVE_SIGNUP_ERRORS:
     const signupErrors = action.errors;
-    return merge({}, _defaultState, {
+    return merge({}, state, {
       signupErrors
     });
   case RECEIVE_LOGIN_ERRORS:
     const loginErrors = action.errors;
-    return merge({}, _defaultState, {
+    return merge({}, state, {
       loginErrors
     });
   case RECEIVE_ALL_USERS:

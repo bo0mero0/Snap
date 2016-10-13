@@ -4,6 +4,7 @@ import {
   RECEIVE_CHANNELS,
   RECEIVE_SUBSCRIBE_CHANNELS,
   RECEIVE_DM_CHANNELS,
+  RECEIVE_ONLINE_CHANNELS,
   DELETE_CHANNEL,
   CHANGE_CHANNEL,
   RECEIVE_CHANNEL_ERRORS
@@ -14,7 +15,8 @@ const _defaultState = Object.freeze({
   subscribeChannels: null,
   dmChannels: null,
   allChannels: {},
-  channelErrors: []
+  channelErrors: [],
+  onlineChannels: {}
 });
 
 const ChannelReducer = (state = _defaultState, action) => {
@@ -42,6 +44,10 @@ const ChannelReducer = (state = _defaultState, action) => {
       const newDmState = state;
       newDmState.DmChannels = receiveDmChannels;
       return merge({}, newDmState);
+    case RECEIVE_ONLINE_CHANNELS:
+      let newOnlineState = merge({}, state);
+      newOnlineState.onlineChannels = action.channels;
+      return newOnlineState;
     default:
       return state;
   }

@@ -2,13 +2,15 @@ import { receiveCurrentUser,
          receiveSignupErrors,
          receiveLoginErrors,
          receiveAllUsers,
+         GO_ONLINE,
+         GO_OFFLINE,
          FETCH_ALL_USERS,
          LOGIN,
          LOGOUT,
          SIGNUP
        } from '../actions/session_actions';
 
-import { login, signup, logout, fetchAllUsers } from '../util/session_api_util';
+import { login, signup, logout, fetchAllUsers, goOnline, goOffline } from '../util/session_api_util';
 
 export default ({getState, dispatch}) => next => action => {
   const successCallback = user => dispatch(receiveCurrentUser(user));
@@ -21,6 +23,7 @@ export default ({getState, dispatch}) => next => action => {
     const errors = xhr.responseJSON;
     dispatch(receiveSignupErrors(errors));
   };
+
   switch(action.type){
     case LOGIN:
       login(action.user, successCallback, loginErrorCallback);
@@ -33,6 +36,12 @@ export default ({getState, dispatch}) => next => action => {
       return next(action);
     case FETCH_ALL_USERS:
       fetchAllUsers(successAllUserCallback);
+      return next(action);
+    case GO_ONLINE:
+      goOnline(action.username);
+      return next(action);
+    case GO_OFFLINE:
+      goOffline(action.username);
       return next(action);
     default:
       return next(action);

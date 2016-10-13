@@ -3,10 +3,12 @@ import {
   receiveChannelErrors,
   receiveSubscribeChannels,
   receiveDmChannels,
+  receiveOnlineChannels,
   CREATE_CHANNEL,
   DELETE_CHANNEL,
   FETCH_CHANNELS,
   FETCH_SUBSCRIBE_CHANNELS,
+  FETCH_ONLINE_CHANNELS,
   SUBCRIBE_TO_CHANNEL,
   UNSUBCRIBE_TO_CHANNEL,
   CREATE_DM_CHANNEL,
@@ -14,7 +16,7 @@ import {
   FETCH_NOTI
 } from '../actions/channel_actions';
 
-import {receiveNotifications} from '../actions/message_actions'
+import {receiveNotifications} from '../actions/message_actions';
 
 import { fetchChannels,
           deleteChannel,
@@ -24,12 +26,14 @@ import { fetchChannels,
           unsubscribeToChannel,
           createDmChannel,
           deleteNotification,
-          fetchNoti } from '../util/channel_api_util';
+          fetchNoti,
+          fetchOnlineChannels } from '../util/channel_api_util';
 
 export default ({getState, dispatch}) => next => action => {
   const successChannelsCallback = channels => dispatch(receiveChannels(channels));
   const successFetchNotiCallback = notifications => dispatch(receiveNotifications(notifications));
   const successSubscribeChannelsCallback = channels => dispatch(receiveSubscribeChannels(channels));
+  const successOnlineChannelCallBack = (channels) => dispatch(receiveOnlineChannels(channels));
   const successDmChannelsCallback = channels => dispatch(receiveDmChannels(channels));
   const channelErrorCallback = xhr => {
     const errors = xhr.responseJSON;
@@ -56,15 +60,18 @@ export default ({getState, dispatch}) => next => action => {
       unsubscribeToChannel(action.channelId, successSubscribeChannelsCallback, channelErrorCallback);
       return next(action);
     case CREATE_DM_CHANNEL:
-      createDmChannel(action.users, successDmChannelsCallback, channelErrorCallback )
+      createDmChannel(action.users, successDmChannelsCallback, channelErrorCallback );
       return next(action);
     case DELETE_NOTIFICATION:
-      deleteNotification(action.notification, channelErrorCallback )
+      deleteNotification(action.notification, channelErrorCallback );
       return next(action);
     case FETCH_NOTI:
       fetchNoti(action.userId, successFetchNotiCallback, channelErrorCallback );
       return next(action);
+    case FETCH_ONLINE_CHANNELS:
+      fetchOnlineChannels(successOnlineChannelCallBack, channelErrorCallback);
+      return next(action);
     default:
       return next(action);
   }
-}
+};

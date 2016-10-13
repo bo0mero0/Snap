@@ -6,12 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = User.create!(username: "phi", password: "password")
-user2 = User.create!(username: "Micheal", password: "password")
-user3 = User.create!(username: "Bob", password: "password")
-user4 = User.create!(username: "guest", password: "password")
+user1 = User.create!(username: "phi", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+Online.create(user_id: user1.id, online: false)
+user2 = User.create!(username: "Micheal", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+Online.create(user_id: user2.id, online: false)
+user3 = User.create!(username: "Bob", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+Online.create(user_id: user3.id, online: false)
+user4 = User.create!(username: "guest", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+Online.create(user_id: user4.id, online: false)
 50.times do
-   User.create!(username: Faker::Name.name, password: "password")
+   user = User.create!(username: Faker::Name.name, password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+   Online.create(user_id: user.id, online: false)
 end
 
 

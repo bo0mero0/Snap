@@ -86,6 +86,27 @@ class Api::ChannelsController < ApplicationController
     render "api/channels/noti_index"
   end
 
+  def online_channel_index
+    @channels = []
+    @num_online = {}
+    current_user.channels.each do |channel|
+      online = false
+      @num_online[channel.title] = 1
+      channel.users.each do |user|
+        next if user == current_user
+        if (user.online.online == true)
+          @channels.push(channel.title)
+          @num_online[channel.title] += 1
+          online = true
+        end
+      end
+      online = false
+    end
+    @channels.uniq!
+    render "api/channels/online"
+    # @channels = Channel.online_user_channel(params[:username])
+  end
+
   private
 
   def channel_params

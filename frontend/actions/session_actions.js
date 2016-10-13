@@ -6,6 +6,8 @@ export const RECEIVE_SIGNUP_ERRORS = "RECEIVE_SIGNUP_ERRORS";
 export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
 export const FETCH_ALL_USERS = "FETCH_ALL_USERS";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
+export const GO_ONLINE = "GO_ONLINE";
+export const GO_OFFLINE = "GO_OFFLINE";
 
 export const signup = user => ({
   type: SIGNUP,
@@ -43,4 +45,14 @@ export const fetchAllUsers = () => ({
 export const receiveAllUsers = (users) => ({
   type: RECEIVE_ALL_USERS,
   users
+});
+
+export const goOnline = (username) => ({
+  type: GO_ONLINE,
+  username
+});
+
+export const goOffline = (username) => ({
+  type: GO_OFFLINE,
+  username
 });

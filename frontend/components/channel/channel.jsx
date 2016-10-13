@@ -26,6 +26,20 @@ class Channel extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log("hello");
+    debugger
+    this.props.goOffline(this.props.currentUser.username);
+  }
+
+  // window.onbeforeunload = () => {
+  //   debugger
+  //   console.log("hello");
+  // }
+
+  // window.addEventListener("beforeunload", function(e){
+  //  // Do something
+  // }, false);
   // channelSelector (e) {
   //   this.setState({
   //     currentChannel: this.props.channels[e.currentTarget.value]
@@ -50,23 +64,29 @@ class Channel extends React.Component {
         channelsName.push([this.props.subscribeChannels[id].title, id]);
       }
     }
+    let onlineTagClass;
     let channelsHtml = channelsName.map( channelName => {
       // console.log(Object.keys(this.props.notification));
       // console.log(Object.keys(this.props.notification).indexOf(channelName[0]));
+      if (Object.keys(this.props.onlineChannels).indexOf(channelName[0]) >= 0) {
+        onlineTagClass = "online-icon";
+      } else {
+        onlineTagClass = "nothing";
+      }
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}>✒ {channelName[0]}</Link>
+                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
           return (<li className="noti-channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}>✒ {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }

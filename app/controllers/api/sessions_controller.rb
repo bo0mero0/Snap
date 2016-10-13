@@ -30,4 +30,23 @@ class Api::SessionsController < ApplicationController
 		end
 	end
 
+	def go_online
+		user = User.find_by(username: params[:username])
+		user.online.online = true
+		user.online.save
+		Pusher.trigger('chat1' , 'message_created', {})
+		render json: {}
+
+	end
+
+	def go_offline
+		debugger
+		user = User.find_by(username: params[:username])
+		user.online.online = false
+		user.online.save
+		Pusher.trigger('chat1' , 'message_created', {})
+		render json: {}
+
+	end
+
 end

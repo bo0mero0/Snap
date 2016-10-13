@@ -33,6 +33,32 @@ class Channel < ActiveRecord::Base
     self.icon_url ||= '✒'
   end
 
+  def self.online_user_channel(username)
+
+    Channel.find_by_sql([<<-SQL, username])
+        SELECT
+          channels.title, channels.id, users.username
+        FROM
+          channels
+        JOIN
+          channel_subscriptions ON channels.id = channel_subscriptions.channel_id
+        JOIN
+          users ON users.id = channel_subscriptions.user_id
+        JOIN (
+          SELECT
+            users.username
+          FROM
+            users
+          JOIN
+            onlines ON onlines.user_id = users.id
+          WHERE
+            users.online = 'true' AND users.username <> ?
+        ) AS online_users ON users.username = online_users.username
+
+    SQL
+
+  end
+
   def find_by_title(title)
     channel = Channel.find_by(title: title)
     return nil unless channel

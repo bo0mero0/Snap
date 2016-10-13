@@ -6,9 +6,9 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import SignupContainer from './signup/signup_container';
 import MessageContainer from './message/message_container';
 import ChannelContainer from './channel/channel_container';
-import { changeChannel, fetchChannels, fetchSubscribeChannels, fetchNoti } from '../actions/channel_actions';
+import { changeChannel, fetchChannels, fetchSubscribeChannels, fetchNoti, fetchOnlineChannels } from '../actions/channel_actions';
 import { fetchMessages } from '../actions/message_actions';
-import { fetchAllUsers } from '../actions/session_actions';
+import { fetchAllUsers, goOnline } from '../actions/session_actions';
 
 const Root = ({ store }) => {
 
@@ -17,7 +17,7 @@ const Root = ({ store }) => {
     if (currentUser) {
       replace('/');
     }
-  }
+  };
 
   const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
@@ -30,15 +30,17 @@ const Root = ({ store }) => {
     store.dispatch(changeChannel(state.params.channelName));
     store.dispatch(fetchMessages(state.params.channelName));
 
-  }
+  };
 
   const _fetchChannels = () => {
     _ensureLoggedIn();
     store.dispatch(fetchAllUsers());
     store.dispatch(fetchSubscribeChannels(store.getState().session.currentUser.id));
     store.dispatch(fetchChannels());
+    store.dispatch(fetchOnlineChannels());
     store.dispatch(fetchNoti(store.getState().session.currentUser.id));
-  }
+    store.dispatch(goOnline(store.getState().session.currentUser.username));
+  };
 
   return (
     <Provider store={store}>

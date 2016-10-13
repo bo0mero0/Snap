@@ -28,7 +28,9 @@ class Message extends React.Component {
     var channel = this.pusher.subscribe('chat1');
     channel.bind('message_created', data => {
       this.props.fetchMessages(this.props.currentChannel);
-      this.props.receiveNotification(data.channel_name);
+      if (data.channel_name) {
+        this.props.receiveNotification(data.channel_name);
+      }
       this.props.fetchSubscribeChannels(this.props.currentUser.id);
     });
   }
@@ -41,6 +43,8 @@ class Message extends React.Component {
   }
 
   componentWillUnmount() {
+        console.log("hello2");
+    debugger
     this.pusher.unsubcribe('chat1');
   }
 
@@ -49,19 +53,31 @@ class Message extends React.Component {
     for (var id in this.props.messages) {
         messages.push(this.props.messages[id]);
     }
+    let lastUser;
     let messagesHtml = messages.map( message => {
-      return (
-        <li className="message-container" key={message.id}>
-          <div className="message-icon">{message.icon_url}</div>
-          <div className="author-time-message-container">
-            <div className="author-time-container">
-              <div className="message-author">{message.author_name}</div>
-              <div className="message-time">{message.created_at}</div>
+      if (lastUser !== message.author_name) {
+        lastUser = message.author_name;
+        return (
+          <li className="message-container" key={message.id}>
+            <div className="message-icon"><img src={message.icon_url} alt="MDN"/></div>
+            <div className="author-time-message-container">
+              <div className="author-time-container">
+                <div className="message-author">{message.author_name}</div>
+                <div className="message-time">{message.created_at}</div>
+              </div>
+              <div className="message" key={message.id} value={message.id}>{message.body}</div>
             </div>
+          </li>
+        );
+      } else {
+        return (
+        <li className="message-container" key={message.id}>
+          <div className="author-time-message-container single-message">
             <div className="message" key={message.id} value={message.id}>{message.body}</div>
           </div>
         </li>
       );
+      }
     });
     return messagesHtml;
   }

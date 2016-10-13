@@ -14,6 +14,7 @@ class Api::UsersController < ApplicationController
   @user = User.new(user_params)
 
     if @user.save
+      Online.create(user_id: @user.id, online: false)
       login!(@user)
       render "api/users/show"
     else

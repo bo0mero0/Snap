@@ -12,6 +12,8 @@ export const CREATE_DM_CHANNEL = "CREATE_DM_CHANNEL";
 export const RECEIVE_DM_CHANNELS = "RECEIVE_DM_CHANNELS";
 export const DELETE_NOTIFICATION = "DELETE_NOTIFICATION";
 export const FETCH_NOTI = "FETCH_NOTI";
+export const RECEIVE_ONLINE_CHANNELS = "RECEIVE_ONLINE_CHANNELS";
+export const FETCH_ONLINE_CHANNELS = "FETCH_ONLINE_CHANNELS";
 
 
 export const createChannel = (channel) => ({
@@ -82,4 +84,13 @@ export const deleteNotification = (notification) => ({
 export const fetchNoti = (userId) => ({
   type: FETCH_NOTI,
   userId
+});
+
+export const receiveOnlineChannels = (channels) => ({
+  type: RECEIVE_ONLINE_CHANNELS,
+  channels
+});
+
+export const fetchOnlineChannels = () => ({
+  type: FETCH_ONLINE_CHANNELS
 });

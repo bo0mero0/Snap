@@ -39,3 +39,27 @@ export const fetchAllUsers = (success) => {
     }
   });
 };
+
+export const goOnline = (username, success) => {
+	$.ajax({
+		method: 'POST',
+		url: '/api/online',
+		data: {username},
+		success,
+		error: () => {
+			console.log("go online error");
+		}
+	});
+};
+
+export const goOffline = (username, success) => {
+	$.ajax({
+		method: 'POST',
+		url: '/api/offline',
+		data: {username},
+		success,
+		error: () => {
+			console.log("go offline error");
+		}
+	});
+};
