@@ -7,7 +7,8 @@ import { fetchSubscribeChannels } from '../../actions/channel_actions';
 const mapStateToProps = ( state ) => ({
   currentUser: state.session.currentUser,
   currentChannel: state.channel.currentChannel,
-  messages: state.message.messages
+  messages: state.message.messages,
+  focus: state.message.focus
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

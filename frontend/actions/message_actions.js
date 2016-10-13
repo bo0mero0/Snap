@@ -7,6 +7,7 @@ export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const RECEIVE_NOTIFICATION = "RECEIVE_NOTIFICATION";
 export const RECEIVE_NOTIFICATIONS = "RECEIVE_NOTIFICATIONS";
 export const RECEIVE_DELETE_NOTI = "RECEIVE_DELETE_NOTI";
+export const RECEIVE_FOCUS = "RECEIVE_FOCUS";
 
 
 export const createMessage = (message) => ({
@@ -52,4 +53,9 @@ export const receiveNotifications = (notifications) => ({
 export const receiveDeleteNoti = (channelName) => ({
   type: RECEIVE_DELETE_NOTI,
   channelName
+});
+
+export const receiveFocus = (focus) => ({
+  type: RECEIVE_FOCUS,
+  focus
 });

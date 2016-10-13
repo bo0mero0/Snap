@@ -7,16 +7,19 @@ import {
   RECEIVE_MESSAGE_ERRORS,
   RECEIVE_NOTIFICATION,
   RECEIVE_NOTIFICATIONS,
-  RECEIVE_DELETE_NOTI
+  RECEIVE_DELETE_NOTI,
+  RECEIVE_FOCUS
 } from '../actions/message_actions';
 
 const _defaultState = Object.freeze({
   messages: {},
   messageErrors: [],
-  notification: {}
+  notification: {},
+  focus: true
 });
 
 const MessageReducer = (state = _defaultState, action) => {
+  console.log(action);
   switch (action.type) {
     case RECEIVE_MESSAGES:
       let receiveMessages = merge({}, state);
@@ -50,6 +53,10 @@ const MessageReducer = (state = _defaultState, action) => {
       let delNotiState = merge({}, state);
       delete delNotiState.notification[action.channelName];
       return delNotiState;
+    case RECEIVE_FOCUS:
+      let focusState = merge({}, state);
+      focusState.focus = action.focus;
+      return focusState;
     default:
       return state;
 

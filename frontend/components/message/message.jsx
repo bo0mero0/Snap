@@ -9,6 +9,7 @@ class Message extends React.Component {
     this.state = {
     };
     this.renderMessages = this.renderMessages.bind(this);
+    this.updateTab = this.updateTab.bind(this);
   }
 
   // shouldComponentUpdate() {
@@ -31,8 +32,19 @@ class Message extends React.Component {
       if (data.channel_name) {
         this.props.receiveNotification(data.channel_name);
       }
+      console.log(this.props.focus);
+      if (!this.props.focus) {
+        console.log(this.updateTab);
+        this.updateTab();
+      }
       this.props.fetchSubscribeChannels(this.props.currentUser.id);
+
     });
+  }
+
+  updateTab() {
+    document.title = '!Snap';
+    document.getElementById('favicon').href = "/assets/nib-flat-noti.png";
   }
 
   componentDidUpdate(){
