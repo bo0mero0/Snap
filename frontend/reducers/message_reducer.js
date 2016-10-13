@@ -19,7 +19,6 @@ const _defaultState = Object.freeze({
 });
 
 const MessageReducer = (state = _defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case RECEIVE_MESSAGES:
       let receiveMessages = merge({}, state);

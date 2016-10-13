@@ -1,6 +1,5 @@
 .messages-container {
   display: block;
-  border: 1px solid green;
   float: left;
   margin-left: 220px;
   color: #fff;
@@ -9,6 +8,7 @@
   max-height: 100vh;
   // background: #fff;
   padding-bottom: 65px;
+  width: calc(100% - 221px);
 }
 
 .messages {
@@ -16,8 +16,9 @@
   display: block;
   width: calc(100% - 221px);
   overflow-y: auto;
-  max-height: calc(100% - 65px);
+  max-height: calc(100% - 118px);
   margin-bottom: 65px;
+  margin-top: 60px;
 }
 
 .message-container {
@@ -70,11 +71,11 @@
 .message {
   display: block;
   line-height: 1.6rem;
+  text-align: justify;
+  margin-left: 73px
 }
 
-.single-message {
-  margin-left: 73px;
-}
+
 .chat-submit {
   display: none;
 }
@@ -89,8 +90,9 @@
   left: 242px;
   width: calc(100% - 325px);
   padding: 9px 40px 9px 8px;
-  border-radius: 0 6px 6px 0;
-  margin-right: 16px
+  border-radius: 6px 6px 6px 6px;
+  margin-right: 16px;
+  font-family: "Slack-Lato", sans-serif;
 }
 
 .messages::-webkit-scrollbar {

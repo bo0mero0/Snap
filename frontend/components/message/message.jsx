@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MessageSubmit from './message_submit';
+import ChatHeader from '../chat_header/chat_header_container';
 
 class Message extends React.Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class Message extends React.Component {
   render() {
     return (
       <div className="messages-container group">
+        <ChatHeader/>
         <ul className="messages">
           {this.renderMessages()}
           <div id="messages-scroll-location"></div>
