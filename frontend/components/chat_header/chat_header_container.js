@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ChatHeader from './chat_header';
 
-import { logout } from '../../actions/session_actions';
+import { logout, goOffline } from '../../actions/session_actions';
 
 
 const mapStateToProps = ( state ) => ({
@@ -13,6 +13,7 @@ const mapStateToProps = ( state ) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: () => dispatch(logout()),
+  goOffline: (username) => dispatch(goOffline(username))
 });
 
 export default connect(

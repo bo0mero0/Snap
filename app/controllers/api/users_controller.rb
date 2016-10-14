@@ -12,9 +12,12 @@ class Api::UsersController < ApplicationController
 
   def create
   @user = User.new(user_params)
+  @user.icon_url = Faker::Avatar.image(Faker::Hipster.word, "36x36")
 
     if @user.save
       Online.create(user_id: @user.id, online: false)
+      channel = Channel.find_by(title: "general")
+      @user.channels.push(channel)
       login!(@user)
       render "api/users/show"
     else

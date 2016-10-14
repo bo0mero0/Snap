@@ -60,8 +60,9 @@ class SubscribeModal extends React.Component {
     let channelsName;
     let filteredChannelsId;
     if (Object.keys(this.props.allChannels).length > 0) {
+      this.num_channels = Object.keys(this.props.allChannels).length;
       filteredChannelsId = Object.keys(this.props.allChannels).filter((key) => {
-        return Object.keys(this.props.subscribeChannels).indexOf(key) < 0;
+        return (Object.keys(this.props.subscribeChannels).indexOf(key) < 0) && (this.props.allChannels[key].channel_type === "channel");
       });
       channelsName = filteredChannelsId.map( id => {
         return (<li className="subscribe-channel"  key={id} value={id}
@@ -86,7 +87,7 @@ class SubscribeModal extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal} className="channel-subscribe-modal-button"> CHANNELS</button>
+        <button onClick={this.openModal} className="channel-subscribe-modal-button"> CHANNELS <span>({this.num_channels})</span></button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}

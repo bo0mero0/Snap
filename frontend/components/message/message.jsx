@@ -74,9 +74,9 @@ class Message extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.pusher.unsubcribe('chat1');
-  }
+  // componentWillUnmount() {
+  //   this.pusher.unsubcribe('chat1');
+  // }
 
   renderMessages() {
     let messages = [];

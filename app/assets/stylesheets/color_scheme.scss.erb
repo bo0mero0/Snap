@@ -1,0 +1,39 @@
+.color-scheme-container {
+  display: block;
+  height: 60px;
+  width: 160px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+$color: blue;
+
+.color-scheme-1:click {
+  $color: #000000;
+}
+
+.color-scheme-2:click {
+  $color: #cccccc;
+}
+.color-scheme {
+  float: left;
+  display: block;
+  background: <%= "red" %>;
+  height: 15px;
+  width: 15px;
+  margin: 5px 5px 0 5px;
+  color: blue;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.color-scheme-3 {
+  transition: all 0s 999999s;
+}
+
+transition:active {
+  transition: all 0s;
+  $color: #000000;
+  background: green;
+}

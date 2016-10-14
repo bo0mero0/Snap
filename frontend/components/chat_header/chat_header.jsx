@@ -6,13 +6,15 @@ class ChatHeader extends React.Component {
 		super(props);
     this.renderChannelDescription = this.renderChannelDescription.bind(this);
     this.renderNumOnline = this.renderNumOnline.bind(this);
-
+		this.handleLogout = this.handleLogout.bind(this);
 	}
 
-
-
 	handleLogout(e) {
-
+		e.preventDefault();
+		debugger
+		this.props.goOffline(this.props.currentUser.username);
+		this.props.logout();
+		hashHistory.push("/");
 	}
 
   renderChannelDescription() {
@@ -34,6 +36,8 @@ class ChatHeader extends React.Component {
     }
   }
 
+
+
 	render() {
     if (this.props.currentChannel) {
       return (
@@ -44,6 +48,7 @@ class ChatHeader extends React.Component {
             <div className="num-user-online"><span>{this.renderNumOnline()}</span> members online</div>
             <div className="channel-description">"{this.renderChannelDescription()}!"</div>
           </div>
+					<button onClick={this.handleLogout} className="chat-logout">Logout</button>
       </div>
       );
     } else {
@@ -55,4 +60,12 @@ class ChatHeader extends React.Component {
   }
 }
 
+// <ul className="color-scheme-container">
+// 	<li className="color-scheme-1 color-scheme">_</li>
+// 	<li className="color-scheme-2 color-scheme">_</li>
+// 	<li className="color-scheme-3 color-scheme">_</li>
+// 	<li className="color-scheme-4 color-scheme">_</li>
+// 	<li className="color-scheme-5 color-scheme">_</li>
+// 	<li className="color-scheme-6 color-scheme">_</li>
+// </ul>
 export default ChatHeader;

@@ -35,16 +35,18 @@ class Signup extends React.Component {
 
 
 	renderErrors() {
-    if (this.props.signupErrors.length) {
-  		return(
-  			<ul className="login-singup-errors">
-  				{this.props.signupErrors.map((error, i) => (
-  					<li key={`error-${i}`}>
-  						{error}
-  					</li>
-  				))}
-  			</ul>
-  		);
+    if (this.props.signupErrors) {
+			if (this.props.signupErrors.length > 0) {
+	  		return(
+	  			<ul className="login-singup-errors">
+	  				{this.props.signupErrors.map((error, i) => (
+	  					<li key={`error-${i}`}>
+	  						{error}
+	  					</li>
+	  				))}
+	  			</ul>
+	  		);
+			}
     }
 	}
 

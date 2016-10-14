@@ -5,18 +5,22 @@
   width: calc(100% - 241px);
   font-family: "Slack-Lato", sans-serif;
   padding: 10px;
-  background: rgba(0, 0, 0, .3);;
+  background: #ffffff;
+}
 
+.chat-header.group {
+  border-bottom: #e8e8e8;
 }
 
 .channel-info {
   display: block;
   height: 100vh;
+  width: calc(100% - 300px);
 }
 
 .chat-header img {
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 18px;
   width: 30px;
   height: 30px;
   float: left;
@@ -24,26 +28,28 @@
 }
 
 .chat-header-channel-name {
-  padding: 8px 0 0 60px;
+  padding: 10px 0 0 60px;
   font-size: 1.125rem;
   font-weight: 900;
+  color: #2c2d30;
 
 }
 
 .num-user-online {
   float: left;
   font-family: "Slack-Lato", sans-serif;
-  font-size: .8125rem;
+  font-size: .81rem;
   font-weight: 400;
   padding-left: 10px;
   padding-right: 10px;
-  border-right: 1px solid rgba(0, 0, 0, .6);
+  border-right: 1px solid #e8e8e8;
   color: #9e9ea6;
+  padding-top: 5px;
 
 }
 
 .num-user-online span {
-  font-size: 1rem;
+  font-size: .8rem;
   color: #9e9ea6;
 }
 
@@ -53,4 +59,27 @@
   padding-left: 186px;
   line-height: 1.46;
   color: #9e9ea6;
+  padding-top: 5px;
+  white-space: nowrap;
+}
+
+.chat-logout {
+  display: block;
+  color: #2c2d30;
+  padding: 8px 10px 10px 10px;
+  position: fixed;
+  top: 8px;
+  right: 15px;
+  font-family: "Lucida Grande", sans-serif;
+  cursor: pointer;
+  border: 2px solid #555459;
+  border-radius: 6px;;
+}
+
+.chat-logout:hover {
+  background: #dad9d9;
+}
+
+.chat-logout:active {
+  background: #a1a1a1;
 }

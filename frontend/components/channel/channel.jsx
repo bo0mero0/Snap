@@ -16,6 +16,7 @@ class Channel extends React.Component {
     this.renderDmChannels = this.renderDmChannels.bind(this);
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
     this.deleteNoti = this.deleteNoti.bind(this);
+    this.currentUser = this.currentUser.bind(this);
     // this.channelSelector = this.channelSelector.bind(this);
     const goOffline = this.props.goOffline.bind(this);
     window.onbeforeunload = () => {
@@ -82,18 +83,18 @@ class Channel extends React.Component {
       }
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
+                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
           return (<li className="noti-channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
-                    <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
+                    <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }
@@ -118,18 +119,18 @@ class Channel extends React.Component {
       }
       if ( channelName[0] === this.props.currentChannel) {
         return (<li className="current-channel"  key={channelName[1]} >
-                  <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
+                <Link onClick={this.deleteNoti} to={"messages/" + this.props.currentChannel}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
                   <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
           return (<li className="noti-dm-channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
                     <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
                   </li>);
         } else {
-          return (<li className="channel"  key={channelName[1]}>
-                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0]}</Link>
+          return (<li className="channel dm-channel"  key={channelName[1]}>
+                    <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
                     <button onClick={this.handleUnsubscribe} value={channelName[1]}>ⓧ</button>
                   </li>);
         }
@@ -138,12 +139,21 @@ class Channel extends React.Component {
     return channelsHtml;
   }
 
+  currentUser() {
+    if (this.props.currentUser.username) {
+      return this.props.currentUser.username
+    }
+  }
+
 
   render () {
     return (
       <div className="channel-sidebar group">
         <div className="channels-container">
-          <h3 className="channel-header">✑ {this.props.currentUser.username}</h3>
+          <div className="channel-header">
+            <h3 className="snap" ><span>✑</span><Link to="/"> Snap</Link></h3>
+            <h3 className="current-user"><span>✒ </span>{this.currentUser()}</h3>
+          </div>
           <SubscribeModal/>
           <ul className="channels">
             { this.renderChannels() }

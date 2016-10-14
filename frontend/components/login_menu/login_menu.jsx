@@ -70,16 +70,18 @@ class LoginMenu extends React.Component {
   }
 
   renderErrors() {
-    if (this.props.loginErrors.length) {
-      return(
-        <ul className="login-singup-errors">
-          {this.props.loginErrors.map((error, i) => (
-            <li key={`error-${i}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      );
+    if (this.props.loginErrors) {
+      if (this.props.loginErrors.length > 0) {
+        return(
+          <ul className="login-singup-errors">
+            {this.props.loginErrors.map((error, i) => (
+              <li key={`error-${i}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+      }
     }
   }
 
