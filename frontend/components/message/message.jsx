@@ -50,7 +50,7 @@ class Message extends React.Component {
       Notification.requestPermission();
     } else {
       var notification = new Notification(author, {
-        icon: '/assets/nib-flat.png',
+        icon: window.snapAssets.favicon_icon,
         body: message,
         sound: window.snapAssets.ding
       });
