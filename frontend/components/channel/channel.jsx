@@ -88,9 +88,15 @@ class Channel extends React.Component {
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
+          let num_noti;
+          if (this.props.notification[channelName[0]] > 9) {
+            num_noti = "?";
+          } else {
+            num_noti = this.props.notification[channelName[0]];
+          }
           return (<li className="noti-channel"  key={channelName[1]}>
                     <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
-                    <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
+                    <button value={channelName[1]}>{num_noti}</button>
                   </li>);
         } else {
           return (<li className="channel"  key={channelName[1]}>
@@ -124,9 +130,15 @@ class Channel extends React.Component {
                 </li>);
       } else {
         if ((Object.keys(this.props.notification).length) && (Object.keys(this.props.notification).indexOf(channelName[0]) >= 0)) {
+          let num_noti;
+          if (this.props.notification[channelName[0]] > 9) {
+            num_noti = "?";
+          } else {
+            num_noti = this.props.notification[channelName[0]];
+          }
           return (<li className="noti-dm-channel"  key={channelName[1]}>
                     <Link onClick={this.deleteNoti} to={"messages/" + channelName[0]}><span className={onlineTagClass} >✒</span> {channelName[0].slice(0, 16)}</Link>
-                    <button value={channelName[1]}>{this.props.notification[channelName[0]]}</button>
+                    <button value={channelName[1]}>{num_noti}</button>
                   </li>);
         } else {
           return (<li className="channel dm-channel"  key={channelName[1]}>

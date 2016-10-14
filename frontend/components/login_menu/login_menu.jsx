@@ -20,10 +20,8 @@ const customStyles = {
     bottom                : 'auto',
     border                : '1px solid #e7e7e7',
     margin                : '0 auto',
-    width                 : '40%',
-    height                : '55%',
-    minWidth             : '385px',
-    minHeight            : '300px',
+    width                 : '385px',
+    minHeight                : '310px',
     transform             : 'translate(-50%, -50%)'
   }
 };
