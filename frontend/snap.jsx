@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.addEventListener("focus", function(event) {
     document.title = "Snap";
-    document.getElementById('favicon').href = "/assets/nib-flat.png";
+    document.getElementById('favicon').href = window.snapAsset.favicon_icon;
     store.dispatch(receiveFocus(true));
   }, false);
   window.addEventListener("blur", function(event) {
