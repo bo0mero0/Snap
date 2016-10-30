@@ -87,9 +87,15 @@ class Message extends React.Component {
     let messagesHtml = messages.map( message => {
       if (lastUser !== message.author_name) {
         lastUser = message.author_name;
+        let iconUrl;
+        if (message.author_name === "phi") {
+          iconUrl = window.snapAssets.phi;
+        } else {
+          iconUrl = window.snapAssets.profile;
+        }
         return (
           <li className="message-container" key={message.id}>
-            <div className="message-icon"><img src={message.icon_url} alt="MDN"/></div>
+            <div className="message-icon"><img src={iconUrl} alt="MDN"/></div>
             <div className="author-time-message-container">
               <div className="author-time-container">
                 <div className="message-author">{message.author_name}</div>
