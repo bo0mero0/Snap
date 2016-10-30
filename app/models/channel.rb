@@ -25,7 +25,7 @@ class Channel < ActiveRecord::Base
     foreign_key: :creator_id
 
   validates :title, :creator_id, presence: true
-  validates :title, uniqueness: true, length: {minimum: 6}
+  validates :title, uniqueness: true, length: {minimum: 4}
 
   before_save :default_values
 
