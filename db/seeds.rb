@@ -7,16 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 channel5 = Channel.create!(title:"general", description:"general channel", creator_id:1)
-user1 = User.create!(username: "phi", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+user1 = User.create!(username: "phi", password: "password", icon_url: "./assets/Phi_Truong.jpeg")
 Online.create(user_id: user1.id, online: false)
-user2 = User.create!(username: "Micheal", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+user2 = User.create!(username: "Micheal", password: "password", icon_url: "./assets/profile.png")
 Online.create(user_id: user2.id, online: false)
-user3 = User.create!(username: "Bob", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+user3 = User.create!(username: "Bob", password: "password", icon_url: "./assets/profile.png")
 Online.create(user_id: user3.id, online: false)
-user4 = User.create!(username: "guest", password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+user4 = User.create!(username: "guest", password: "password", icon_url: "./assets/profile.png")
 Online.create(user_id: user4.id, online: false)
 50.times do
-   user = User.create!(username: Faker::Name.name, password: "password", icon_url: Faker::Avatar.image(Faker::Hipster.word, "36x36"))
+   user = User.create!(username: Faker::Name.name, password: "password", icon_url: "./assets/profile.png")
    Online.create(user_id: user.id, online: false)
 end
 

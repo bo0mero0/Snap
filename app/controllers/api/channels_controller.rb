@@ -53,9 +53,10 @@ class Api::ChannelsController < ApplicationController
 
   def create_dm
     users_name = []
-    params[:users].keys.sort.each do |key|
+    params[:users].keys.each do |key|
       users_name.push(params[:users][key.to_s]["text"])
     end
+    users_name.sort!
     creator = User.find_by(username: users_name.last)
     @channel = Channel.find_by(title: users_name.join(","))
     if (@channel.nil?)

@@ -11,7 +11,6 @@ class ChatHeader extends React.Component {
 
 	handleLogout(e) {
 		e.preventDefault();
-		debugger
 		this.props.goOffline(this.props.currentUser.username);
 		this.props.logout();
 		hashHistory.push("/");
