@@ -1,4 +1,4 @@
-# **Snap**
+# [**Snap**](http://ohsnap.herokuapp.com)
 
 Snap is a full-stack application inspired by Slack. utilizing Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework for frontend.
 
