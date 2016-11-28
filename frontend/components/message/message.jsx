@@ -39,8 +39,10 @@ class Message extends React.Component {
         this.updateTab();
         this.notify(data.author, data.message);
       }
+      if (this.props.currentUser.userName === "phi");
       this.props.fetchSubscribeChannels(this.props.currentUser.id);
-
+      var audio = new Audio(window.snapAssets.ding);
+      audio.play();
     });
   }
 
