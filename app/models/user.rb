@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :channel_subscriptions
   has_one :online
+  has_one :location
 
   has_many :channels,
     through: :channel_subscriptions,
