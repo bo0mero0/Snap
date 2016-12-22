@@ -21,6 +21,7 @@ const Root = ({ store }) => {
 
   const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
+    window.currentUser = currentUser;
     if (!currentUser) {
       hashHistory.push('/');
     }
