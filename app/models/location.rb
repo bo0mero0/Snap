@@ -14,5 +14,7 @@ class Location < ActiveRecord::Base
   belongs_to :user
 
   validates :latitude, :longitude, :user_id, presence: true
-  
+
+
+
 end

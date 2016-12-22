@@ -4,6 +4,18 @@ import ReactDOM from 'react-dom';
 import MessageSubmit from './message_submit';
 import ChatHeader from '../chat_header/chat_header_container';
 
+const mapCSS = {
+  map: {
+    height: "30px",
+    position: "absolute"
+  }
+};
+
+let _mapOptions = {
+  center: {lat: 37.773972, lng: -122.431297}, // San Francisco coords
+  zoom: 13
+};
+
 class Message extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +24,7 @@ class Message extends React.Component {
     this.renderMessages = this.renderMessages.bind(this);
     this.updateTab = this.updateTab.bind(this);
     this.notify = this.notify.bind(this);
+    this.initMap = this.initMap.bind(this);
   }
 
   // shouldComponentUpdate() {
@@ -44,6 +57,11 @@ class Message extends React.Component {
       var audio = new Audio(window.snapAssets.ding);
       audio.play();
     });
+    this.initMap();
+  }
+
+  initMap() {
+    map = new google.maps.Map(document.getElementById('map'), _mapOptions);
   }
 
   notify(author, message) {
@@ -131,6 +149,7 @@ class Message extends React.Component {
         <MessageSubmit channel={this.props.currentChannel}
                        createMessage={this.props.createMessage}
                        currentUser={this.props.currentUser}/>
+        <div id="map"></div>
       </div>
     );
   }
