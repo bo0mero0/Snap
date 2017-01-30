@@ -24,7 +24,7 @@ class Message extends React.Component {
     this.renderMessages = this.renderMessages.bind(this);
     this.updateTab = this.updateTab.bind(this);
     this.notify = this.notify.bind(this);
-    this.initMap = this.initMap.bind(this);
+    // this.initMap = this.initMap.bind(this);
   }
 
   // shouldComponentUpdate() {
@@ -57,12 +57,12 @@ class Message extends React.Component {
       var audio = new Audio(window.snapAssets.ding);
       audio.play();
     });
-    this.initMap();
+    // this.initMap();
   }
 
-  initMap() {
-    map = new google.maps.Map(document.getElementById('map'), _mapOptions);
-  }
+  // initMap() {
+  //   map = new google.maps.Map(document.getElementById('map'), _mapOptions);
+  // }
 
   notify(author, message) {
     author = author.replace(/\b\w/g, l => l.toUpperCase());

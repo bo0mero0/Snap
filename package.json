@@ -41,6 +41,7 @@
     "react-router": "^2.8.1",
     "react-tag-input": "^4.3.3",
     "redux": "^3.6.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "artyom": "https://github.com/sdkcarlos/artyom.js"
   }
 }

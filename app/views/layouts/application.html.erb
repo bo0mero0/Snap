@@ -9,8 +9,11 @@
   <%= csrf_meta_tags %>
   <!-- <script     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnVlIgXIST_x90M_NeyizU6KqOojlzPU&callback=initMap" async defer>
   </script> -->
-  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnVlIgXIST_x90M_NeyizU6KqOojlzPU"%>
+  <!-- <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnVlIgXIST_x90M_NeyizU6KqOojlzPU"%> -->
   <!-- <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnVlIgXIST_x90M_NeyizU6KqOojlzPU&callback=initMap" %> -->
+
+  <%= javascript_include_tag('artyom.min.js') %>
+  <!-- <script src="artyom.min.js"></script> -->
   <script type="text/javascript">
     window.snapAssets = {
       // image_url is a rails helper method that does the fingerprinting

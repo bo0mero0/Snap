@@ -111,3 +111,15 @@ $blue: random(256)-1;
   background-color: rgba(#ccc, .5);
   border-radius: 8px;
 }
+
+.voice-command-toggle-on {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.voice-command-toggle-off {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}
