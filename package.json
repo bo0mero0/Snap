@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/bo0mero0/Snap#readme",
   "dependencies": {
+    "artyom": "https://github.com/sdkcarlos/artyom.js",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
@@ -36,12 +37,11 @@
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.3.2",
-    "react-modal": "^1.4.0",
+    "react-modal": "^1.6.5",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-tag-input": "^4.3.3",
     "redux": "^3.6.0",
-    "webpack": "^1.13.2",
-    "artyom": "https://github.com/sdkcarlos/artyom.js"
+    "webpack": "^1.13.2"
   }
 }

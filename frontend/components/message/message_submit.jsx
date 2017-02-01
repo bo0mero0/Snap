@@ -45,36 +45,17 @@ class MessageSubmit extends React.Component {
       this.setState({voice: true});
       let voiceIcon = document.getElementsByClassName("voice-icon")[0];
       voiceIcon.style.opacity = "1";
-      // artyom.redirectRecognizedTextOutput((recognized,isFinal) => {
-      // if(isFinal){
-      //     // Nothing
-      //     console.log("hello");
-      // }else{
-      //     console.log(recognized);
-      // }
-    // });
-
-      // artyom.on(['Repeat after me *'] , true).then((i,wildcard) => {
-      //   console.log("testing");
-      //   artyom.say("You've said : " + wildcard);
-      // });
 
       var matchChannelName = (string) => {
         let subscribeChannels = this.props.subscribeChannels;
         for (var id in subscribeChannels) {
-          if (subscribeChannels[id].title.toLowerCase() === string.toLowerCase()) {
+          if (subscribeChannels[id].title.toLowerCase().split(" ").join("") === string.toLowerCase().split(" ").join("")) {
             return subscribeChannels[id].title;
           }
         }
       };
 
       artyom.addCommands([
-        {
-            indexes: ['What is your name','Testing','Anyone'],
-            action: (i) => {
-              artyom.say("testing testing");
-            }
-        },
         {
             indexes: ['Repeat after me *'],
             smart:true,
@@ -87,7 +68,7 @@ class MessageSubmit extends React.Component {
             smart:true,
             action: (i,wildcard) => {
               artyom.say("you said "+ wildcard);
-              this.setState({body: wildcard});
+              this.setState({body: this.state.body+ " " + wildcard});
             }
         },
         {
@@ -98,7 +79,14 @@ class MessageSubmit extends React.Component {
             }
         },
         {
-            indexes: ['change *'],
+            indexes: ['delete message'],
+            smart:false,
+            action: (i,wildcard) => {
+              this.setState({body: ""});
+            }
+        },
+        {
+            indexes: ['change channel to *'],
             smart:true,
             action: (i,wildcard) => {
               let channel = matchChannelName(wildcard);

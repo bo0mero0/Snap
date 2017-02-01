@@ -55,7 +55,7 @@ class Message extends React.Component {
       if (this.props.currentUser.userName === "phi");
       this.props.fetchSubscribeChannels(this.props.currentUser.id);
       var audio = new Audio(window.snapAssets.ding);
-      audio.play();
+      // audio.play();
     });
     // this.initMap();
   }

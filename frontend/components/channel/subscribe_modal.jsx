@@ -61,7 +61,8 @@ class SubscribeModal extends React.Component {
     let filteredChannelsId;
     if (Object.keys(this.props.allChannels).length > 0) {
       this.num_channels = Object.keys(this.props.allChannels).length;
-      filteredChannelsId = Object.keys(this.props.allChannels).filter((key) => {
+      filteredChannelsId = this.props.allChannels || {};
+      filteredChannelsId = Object.keys(filteredChannelsId).filter((key) => {
         return (Object.keys(this.props.subscribeChannels).indexOf(key) < 0) && (this.props.allChannels[key].channel_type === "channel");
       });
       channelsName = filteredChannelsId.map( id => {
