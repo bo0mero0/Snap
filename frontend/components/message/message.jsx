@@ -1,7 +1,7 @@
 /* globals Pusher */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MessageSubmit from './message_submit';
+import MessageSubmit from './message_submit_container';
 import ChatHeader from '../chat_header/chat_header_container';
 
 const mapCSS = {
